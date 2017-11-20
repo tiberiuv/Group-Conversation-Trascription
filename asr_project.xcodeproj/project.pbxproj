@@ -15,6 +15,8 @@
 		10567F851FC30FD200BE1282 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10567F831FC30FD200BE1282 /* LaunchScreen.storyboard */; };
 		10567F901FC30FD300BE1282 /* asr_projectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10567F8F1FC30FD300BE1282 /* asr_projectTests.swift */; };
 		10567F9B1FC30FD300BE1282 /* asr_projectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10567F9A1FC30FD300BE1282 /* asr_projectUITests.swift */; };
+		10567FAE1FC312A600BE1282 /* Process_helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10567FAD1FC312A600BE1282 /* Process_helper.swift */; };
+		10567FB01FC3137600BE1282 /* Audio_frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10567FAF1FC3137600BE1282 /* Audio_frame.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		10567F961FC30FD300BE1282 /* asr_projectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = asr_projectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		10567F9A1FC30FD300BE1282 /* asr_projectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = asr_projectUITests.swift; sourceTree = "<group>"; };
 		10567F9C1FC30FD300BE1282 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		10567FAD1FC312A600BE1282 /* Process_helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Process_helper.swift; sourceTree = "<group>"; };
+		10567FAF1FC3137600BE1282 /* Audio_frame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio_frame.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,13 +103,15 @@
 		10567F771FC30FD200BE1282 /* asr_project */ = {
 			isa = PBXGroup;
 			children = (
-				10567F781FC30FD200BE1282 /* AppDelegate.swift */,
-				10567F7A1FC30FD200BE1282 /* FirstViewController.swift */,
-				10567F7C1FC30FD200BE1282 /* SecondViewController.swift */,
+				10567FAC1FC3120400BE1282 /* Classifiers */,
+				10567FA81FC3118F00BE1282 /* ViewController */,
+				10567FAA1FC311C300BE1282 /* Helpers */,
+				10567FAB1FC311EA00BE1282 /* Sound_processing */,
 				10567F7E1FC30FD200BE1282 /* Main.storyboard */,
-				10567F811FC30FD200BE1282 /* Assets.xcassets */,
 				10567F831FC30FD200BE1282 /* LaunchScreen.storyboard */,
+				10567F811FC30FD200BE1282 /* Assets.xcassets */,
 				10567F861FC30FD300BE1282 /* Info.plist */,
+				10567F781FC30FD200BE1282 /* AppDelegate.swift */,
 			);
 			path = asr_project;
 			sourceTree = "<group>";
@@ -126,6 +132,38 @@
 				10567F9C1FC30FD300BE1282 /* Info.plist */,
 			);
 			path = asr_projectUITests;
+			sourceTree = "<group>";
+		};
+		10567FA81FC3118F00BE1282 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				10567F7A1FC30FD200BE1282 /* FirstViewController.swift */,
+				10567F7C1FC30FD200BE1282 /* SecondViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		10567FAA1FC311C300BE1282 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				10567FAD1FC312A600BE1282 /* Process_helper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		10567FAB1FC311EA00BE1282 /* Sound_processing */ = {
+			isa = PBXGroup;
+			children = (
+				10567FAF1FC3137600BE1282 /* Audio_frame.swift */,
+			);
+			path = Sound_processing;
+			sourceTree = "<group>";
+		};
+		10567FAC1FC3120400BE1282 /* Classifiers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Classifiers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,6 +301,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				10567F7D1FC30FD200BE1282 /* SecondViewController.swift in Sources */,
+				10567FAE1FC312A600BE1282 /* Process_helper.swift in Sources */,
+				10567FB01FC3137600BE1282 /* Audio_frame.swift in Sources */,
 				10567F791FC30FD200BE1282 /* AppDelegate.swift in Sources */,
 				10567F7B1FC30FD200BE1282 /* FirstViewController.swift in Sources */,
 			);
