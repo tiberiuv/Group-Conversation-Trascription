@@ -8,6 +8,7 @@
 
 import XCTest
 import AIToolbox
+
 @testable import asr_project
 class asr_projectTests: XCTestCase {
     var file: Audio_file!
@@ -137,24 +138,24 @@ class asr_projectTests: XCTestCase {
        return mfcc_array
     }
 
-    func test_mfcc_extraction(){
+//    func test_mfcc_extraction(){
 //        let buffer = AVAudioPCMBuffer(pcmFormat: file.format, frameCapacity: UInt32(file.file.length))
 //        do {
 //            try file.file.read(into: buffer!)
 //        } catch {print(error)}
 //        let samples = Process_helper.buffer_to_float(buffer: buffer!);
-        let pointer = UnsafeMutablePointer<Float>(mutating: billy_train)
-
-
-        let mfcc_computer = mfcc_wrapper();
-        
-        let x = mfcc_computer.get_mfccs(pointer, and_size: UInt32(billy_train.count))
-
-    }
-    func apply_vad(buffer: AVAudioPCMBuffer) {
-        let vad = VAD(buffer: buffer);
-    
-    }
+//        let pointer = UnsafeMutablePointer<Float>(mutating: billy_train)
+//
+//
+//        let mfcc_computer = mfcc_wrapper();
+//
+//        let x = mfcc_computer.get_mfccs(pointer, and_size: UInt32(billy_train.count))
+//
+//    }
+//    func apply_vad(buffer: AVAudioPCMBuffer) {
+//        let vad = VAD(buffer: buffer);
+//    
+//    }
    // maybe some bug in training processing of mfccs either in mfcc.cc or mfcc.wrapper.mm or  test_mfcss
     func test_classifierknn() {
         var training_samples = [knn_curve_label_pair]();
@@ -199,7 +200,7 @@ class asr_projectTests: XCTestCase {
     func test_ClassifierSVM(){
         let train_data = DataSet(dataType: .classification, inputDimension: 12, outputDimension: 1)
         let test_data = DataSet(dataType: .classification, inputDimension: 12, outputDimension: 1)
-        let regressor = LogisticRegression(numInputs: 12, solvingMethod: .parameterDelta);
+        let regressor = LogisticRegression(numInputs: 12, solvingMethod: .gaussNewton);
         let numFeatureSets =  60;
         let mfcc_billy = test_mfcc(samples: billy_train)
         let mfcc_joey = test_mfcc(samples: joey_train)
@@ -229,9 +230,9 @@ class asr_projectTests: XCTestCase {
             try regressor.classify(test_data)
             for i in 0..<test_data.size {
                 
-                let result = try test_data.getOutput(i);
+                let result = try test_data.getClass(i);
                 print("Test sample \(i) classified as : \(result)");
-                if(result[0] == 3) {accuracy += 1}
+                if(result == 3) {accuracy += 1}
             }
             print("Accuracy of NN Prediction: \(accuracy / Double(test_data.size) * 100)")
             
