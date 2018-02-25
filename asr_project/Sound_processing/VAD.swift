@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import WebRTC
+//import WebRTC
 class VAD {
 //    var segment: Audio_segment;
     private var framesize:Double = 10 //10 ms

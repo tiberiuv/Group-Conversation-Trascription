@@ -107,7 +107,7 @@ class MFCC_Computer {
         var proc_frame = [Float](repeating: 0, count: frame.count);
         for i in 1..<frame.count {
             proc_frame[i] = Float(hamming[i]) * (frame[i] - Float(pre_emph) * frame[i-1])
-            var sample = proc_frame[i];
+//            var sample = proc_frame[i];
         }
         frame = proc_frame
     }
@@ -185,12 +185,12 @@ class MFCC_Computer {
         var centre_freq = [Double](repeating: 0, count: num_filters + 2)
         for i in 0..<num_filters + 2 {
             centre_freq[i] = (mel_to_hz(mel: low_mel_freq + (high_mel_freq - low_mel_freq )/Double(num_filters+1)*Double(i)))
-            var x = centre_freq[i]
+//            var x = centre_freq[i]
         }
         var fftbin_freq = [Double](repeating: 0, count: num_fftbins)
         for i in 0..<num_fftbins {
             fftbin_freq[i] = (sampling_freq / 2.0 / Double(num_fftbins-1)*Double(i))
-            var x = fftbin_freq[i]
+//            var x = fftbin_freq[i]
         }
         filter_bank = [[Double]]();
         // Populate the fbank matrix

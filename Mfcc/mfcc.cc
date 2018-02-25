@@ -65,7 +65,7 @@ private:
     
     // Cooley-Tukey DIT-FFT recursive function
     v_c_d fft(v_c_d x) {
-        int N = x.size();
+        int N = int(x.size());
         if (N==1)
             return x;
     

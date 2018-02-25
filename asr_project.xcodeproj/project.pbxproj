@@ -30,16 +30,12 @@
 		10567FB01FC3137600BE1282 /* Audio_frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10567FAF1FC3137600BE1282 /* Audio_frame.swift */; };
 		10567FB21FC3176300BE1282 /* Audio_file.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10567FB11FC3176300BE1282 /* Audio_file.swift */; };
 		10642D0A2020A98200C3E910 /* white_noise.wav in Resources */ = {isa = PBXBuildFile; fileRef = 10642D092020A98100C3E910 /* white_noise.wav */; };
-		1068B2AA204081C80029D0E3 /* asr_projectTests.xctest in Embed PlugIns */ = {isa = PBXBuildFile; fileRef = 10567F8B1FC30FD300BE1282 /* asr_projectTests.xctest */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		1068B2AF204081EE0029D0E3 /* AIToolbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1068B2A5204078570029D0E3 /* AIToolbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		107435CC201D058500DCE0A7 /* 8k_8PCM_eng.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 107435CB201D058400DCE0A7 /* 8k_8PCM_eng.mp3 */; };
 		10903B7A1FC5E271008F04E6 /* Speech_turn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10903B791FC5E271008F04E6 /* Speech_turn.swift */; };
 		10903B7C1FC5E2A8008F04E6 /* Audio_segment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10903B7B1FC5E2A8008F04E6 /* Audio_segment.swift */; };
 		10903B7F1FC5EB57008F04E6 /* 7127-75946-0002.flac in Resources */ = {isa = PBXBuildFile; fileRef = 10903B7E1FC5EB57008F04E6 /* 7127-75946-0002.flac */; };
 		10A73B711FC6F27300F26885 /* S_recognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A73B701FC6F27300F26885 /* S_recognizer.swift */; };
 		10A9E8A32031C8FA00897B3D /* KNNDTW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A9E8A22031C8FA00897B3D /* KNNDTW.swift */; };
-		10B07E9C1FCF058D009A40B0 /* Slt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10B07E991FCF058D009A40B0 /* Slt.framework */; };
-		10B07E9D1FCF058D009A40B0 /* OpenEars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10B07E9A1FCF058D009A40B0 /* OpenEars.framework */; };
 		10B07E9E1FCF058D009A40B0 /* AcousticModelEnglish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 10B07E9B1FCF058D009A40B0 /* AcousticModelEnglish.bundle */; };
 		10BE5F6C201CAC5F006D5AAD /* Fft_transformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BE5F6B201CAC5F006D5AAD /* Fft_transformer.swift */; };
 		10BE5F6E201CACF4006D5AAD /* Complex_buffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BE5F6D201CACF4006D5AAD /* Complex_buffer.swift */; };
@@ -60,47 +56,40 @@
 			remoteGlobalIDString = 10567F741FC30FD200BE1282;
 			remoteInfo = asr_project;
 		};
-		1068B2A0204078570029D0E3 /* PBXContainerItemProxy */ = {
+		1081A6D12043440C0086FB8C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 1068B25F204078560029D0E3 /* AIToolbox.xcodeproj */;
+			containerPortal = 1081A6C92043440B0086FB8C /* AIToolbox.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 0EBA29AB1A91350C0012CEC9;
 			remoteInfo = AIToolbox;
 		};
-		1068B2A2204078570029D0E3 /* PBXContainerItemProxy */ = {
+		1081A6D32043440C0086FB8C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 1068B25F204078560029D0E3 /* AIToolbox.xcodeproj */;
+			containerPortal = 1081A6C92043440B0086FB8C /* AIToolbox.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 0EBA29B61A91350C0012CEC9;
 			remoteInfo = AIToolboxTests;
 		};
-		1068B2A4204078570029D0E3 /* PBXContainerItemProxy */ = {
+		1081A6D52043440C0086FB8C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 1068B25F204078560029D0E3 /* AIToolbox.xcodeproj */;
+			containerPortal = 1081A6C92043440B0086FB8C /* AIToolbox.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 0E0A4F931C133E8800AD5AAE;
 			remoteInfo = AIToolboxIOS;
 		};
-		1068B2A6204078570029D0E3 /* PBXContainerItemProxy */ = {
+		1081A6D72043440C0086FB8C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 1068B25F204078560029D0E3 /* AIToolbox.xcodeproj */;
+			containerPortal = 1081A6C92043440B0086FB8C /* AIToolbox.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 0E0A4F9C1C133E8800AD5AAE;
 			remoteInfo = AIToolboxIOSTests;
 		};
-		1068B2A8204078570029D0E3 /* PBXContainerItemProxy */ = {
+		1081A6D92043440C0086FB8C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 1068B25F204078560029D0E3 /* AIToolbox.xcodeproj */;
+			containerPortal = 1081A6C92043440B0086FB8C /* AIToolbox.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = FB0D5A231CAF09230097590B;
 			remoteInfo = "AIToolbox copy";
-		};
-		1068B2B0204081EE0029D0E3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1068B25F204078560029D0E3 /* AIToolbox.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 0E0A4F921C133E8800AD5AAE;
-			remoteInfo = AIToolboxIOS;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -111,20 +100,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				1068B2AA204081C80029D0E3 /* asr_projectTests.xctest in Embed PlugIns */,
 			);
 			name = "Embed PlugIns";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		1068B2B2204081EF0029D0E3 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				1068B2AF204081EE0029D0E3 /* AIToolbox.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -162,91 +139,8 @@
 		10567FAF1FC3137600BE1282 /* Audio_frame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio_frame.swift; sourceTree = "<group>"; };
 		10567FB11FC3176300BE1282 /* Audio_file.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio_file.swift; sourceTree = "<group>"; };
 		10642D092020A98100C3E910 /* white_noise.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = white_noise.wav; sourceTree = "<group>"; };
-		1068B23D204078560029D0E3 /* LICENSE.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = LICENSE.md; sourceTree = "<group>"; };
-		1068B23E204078560029D0E3 /* CONTRIBUTIONS.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = CONTRIBUTIONS.md; sourceTree = "<group>"; };
-		1068B23F204078560029D0E3 /* PlotImage2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlotImage2.png; sourceTree = "<group>"; };
-		1068B241204078560029D0E3 /* ConnectFourAlphaBeta.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = ConnectFourAlphaBeta.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		1068B242204078560029D0E3 /* LinearRegression.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = LinearRegression.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		1068B243204078560029D0E3 /* SupportVectorMachine.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = SupportVectorMachine.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		1068B244204078560029D0E3 /* NeuralNetwork.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = NeuralNetwork.playground; sourceTree = "<group>"; };
-		1068B246204078560029D0E3 /* MLUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLUIView.swift; sourceTree = "<group>"; };
-		1068B247204078560029D0E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1068B248204078560029D0E3 /* AIToolbox copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AIToolbox copy-Info.plist"; sourceTree = "<group>"; };
-		1068B24A204078560029D0E3 /* KMeansTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMeansTest.swift; sourceTree = "<group>"; };
-		1068B24B204078560029D0E3 /* MDPTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MDPTests.swift; sourceTree = "<group>"; };
-		1068B24C204078560029D0E3 /* ValidationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationTests.swift; sourceTree = "<group>"; };
-		1068B24D204078560029D0E3 /* TreeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeTests.swift; sourceTree = "<group>"; };
-		1068B24E204078560029D0E3 /* AlphaBetaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaBetaTests.swift; sourceTree = "<group>"; };
-		1068B24F204078560029D0E3 /* DeepNetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepNetworkTests.swift; sourceTree = "<group>"; };
-		1068B250204078560029D0E3 /* MetalNeuralNetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalNeuralNetworkTests.swift; sourceTree = "<group>"; };
-		1068B251204078560029D0E3 /* SVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVMTests.swift; sourceTree = "<group>"; };
-		1068B252204078560029D0E3 /* ConstraintPropogationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintPropogationTests.swift; sourceTree = "<group>"; };
-		1068B253204078560029D0E3 /* GaussianTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaussianTests.swift; sourceTree = "<group>"; };
-		1068B254204078560029D0E3 /* PCATests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PCATests.swift; sourceTree = "<group>"; };
-		1068B255204078560029D0E3 /* NeuralNetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeuralNetworkTests.swift; sourceTree = "<group>"; };
-		1068B256204078560029D0E3 /* LSTMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSTMTests.swift; sourceTree = "<group>"; };
-		1068B257204078560029D0E3 /* LogisticRegressionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogisticRegressionTests.swift; sourceTree = "<group>"; };
-		1068B258204078560029D0E3 /* GraphTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphTests.swift; sourceTree = "<group>"; };
-		1068B259204078560029D0E3 /* SVMTests with iris.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SVMTests with iris.swift"; sourceTree = "<group>"; };
-		1068B25A204078560029D0E3 /* LinearRegressionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearRegressionTests.swift; sourceTree = "<group>"; };
-		1068B25B204078560029D0E3 /* QueueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueTests.swift; sourceTree = "<group>"; };
-		1068B25C204078560029D0E3 /* NonLinearRegressionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonLinearRegressionTests.swift; sourceTree = "<group>"; };
-		1068B25D204078560029D0E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1068B25E204078560029D0E3 /* MixtureOfGaussianTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixtureOfGaussianTests.swift; sourceTree = "<group>"; };
-		1068B25F204078560029D0E3 /* AIToolbox.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = AIToolbox.xcodeproj; sourceTree = "<group>"; };
-		1068B262204078560029D0E3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		1068B264204078560029D0E3 /* Classes.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Classes.md; sourceTree = "<group>"; };
-		1068B265204078560029D0E3 /* Structures.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Structures.md; sourceTree = "<group>"; };
-		1068B266204078560029D0E3 /* Protocols.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Protocols.md; sourceTree = "<group>"; };
-		1068B267204078560029D0E3 /* AIToolbox.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = AIToolbox.md; sourceTree = "<group>"; };
-		1068B268204078560029D0E3 /* Enumerations.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Enumerations.md; sourceTree = "<group>"; };
-		1068B269204078560029D0E3 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		1068B26A204078560029D0E3 /* PlotImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlotImage.png; sourceTree = "<group>"; };
-		1068B26C204078560029D0E3 /* LinearRegression.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = LinearRegression.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		1068B26D204078560029D0E3 /* SupportVectorMachine.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = SupportVectorMachine.playground; sourceTree = "<group>"; };
-		1068B26E204078560029D0E3 /* NeuralNetwork.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = NeuralNetwork.playground; sourceTree = "<group>"; };
-		1068B270204078560029D0E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1068B272204078560029D0E3 /* LinearRegression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinearRegression.swift; sourceTree = "<group>"; };
-		1068B273204078560029D0E3 /* DeepNetworkOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepNetworkOperator.swift; sourceTree = "<group>"; };
-		1068B274204078560029D0E3 /* MLView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLView.swift; sourceTree = "<group>"; };
-		1068B275204078560029D0E3 /* DeepNeuralNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepNeuralNetwork.swift; sourceTree = "<group>"; };
-		1068B276204078560029D0E3 /* PrincipalComponantAnalysis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrincipalComponantAnalysis.swift; sourceTree = "<group>"; };
-		1068B277204078560029D0E3 /* MetalNeuralNetworkShaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalNeuralNetworkShaders.swift; sourceTree = "<group>"; };
-		1068B278204078560029D0E3 /* LogisticRegression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogisticRegression.swift; sourceTree = "<group>"; };
-		1068B279204078560029D0E3 /* AIToolbox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AIToolbox.h; sourceTree = "<group>"; };
-		1068B27A204078560029D0E3 /* DeepNonLinearity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepNonLinearity.swift; sourceTree = "<group>"; };
-		1068B27B204078560029D0E3 /* MetalNeuralNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalNeuralNetwork.swift; sourceTree = "<group>"; };
-		1068B27C204078560029D0E3 /* NonLinearRegression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonLinearRegression.swift; sourceTree = "<group>"; };
-		1068B27D204078560029D0E3 /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
-		1068B27E204078560029D0E3 /* Convolution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convolution.swift; sourceTree = "<group>"; };
-		1068B27F204078560029D0E3 /* DeepNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepNetwork.swift; sourceTree = "<group>"; };
-		1068B280204078560029D0E3 /* MetalNeuralNetworkShaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = MetalNeuralNetworkShaders.metal; sourceTree = "<group>"; };
-		1068B281204078560029D0E3 /* DeepChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepChannel.swift; sourceTree = "<group>"; };
-		1068B282204078560029D0E3 /* DeepLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLayer.swift; sourceTree = "<group>"; };
-		1068B283204078560029D0E3 /* Pooling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pooling.swift; sourceTree = "<group>"; };
-		1068B284204078560029D0E3 /* MixtureOfGaussians.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixtureOfGaussians.swift; sourceTree = "<group>"; };
-		1068B285204078560029D0E3 /* AlphaBeta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaBeta.swift; sourceTree = "<group>"; };
-		1068B286204078560029D0E3 /* MLPersistenceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MLPersistenceProtocol.swift; sourceTree = "<group>"; };
-		1068B287204078560029D0E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1068B288204078560029D0E3 /* MarkovDecisionProcess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkovDecisionProcess.swift; sourceTree = "<group>"; };
-		1068B28A204078560029D0E3 /* MachineLearningProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MachineLearningProtocols.swift; sourceTree = "<group>"; };
-		1068B28B204078560029D0E3 /* Kernel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Kernel.swift; sourceTree = "<group>"; };
-		1068B28C204078560029D0E3 /* KMeans.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KMeans.swift; sourceTree = "<group>"; };
-		1068B28D204078560029D0E3 /* SVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVM.swift; sourceTree = "<group>"; };
-		1068B28E204078560029D0E3 /* Linux_Accelerate_Wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Linux_Accelerate_Wrapper.swift; sourceTree = "<group>"; };
-		1068B28F204078560029D0E3 /* LSTMNeuralNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSTMNeuralNetwork.swift; sourceTree = "<group>"; };
-		1068B290204078560029D0E3 /* ConstraintPropogation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintPropogation.swift; sourceTree = "<group>"; };
-		1068B291204078560029D0E3 /* RecurrentNeuralNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecurrentNeuralNetwork.swift; sourceTree = "<group>"; };
-		1068B292204078560029D0E3 /* Graph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Graph.swift; sourceTree = "<group>"; };
-		1068B293204078560029D0E3 /* DataSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSet.swift; sourceTree = "<group>"; };
-		1068B294204078560029D0E3 /* NeuralNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeuralNetwork.swift; sourceTree = "<group>"; };
-		1068B295204078560029D0E3 /* Gaussian.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gaussian.swift; sourceTree = "<group>"; };
-		1068B296204078560029D0E3 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
-		1068B297204078560029D0E3 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
-		1068B298204078560029D0E3 /* SVMExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SVMExtensions.swift; sourceTree = "<group>"; };
-		1068B299204078560029D0E3 /* PolicyGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolicyGradient.swift; sourceTree = "<group>"; };
-		1068B29A204078560029D0E3 /* GeneticAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneticAlgorithm.swift; sourceTree = "<group>"; };
 		107435CB201D058400DCE0A7 /* 8k_8PCM_eng.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 8k_8PCM_eng.mp3; sourceTree = "<group>"; };
+		1081A6C92043440B0086FB8C /* AIToolbox.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AIToolbox.xcodeproj; path = ../../Downloads/AIToolbox/AIToolbox.xcodeproj; sourceTree = "<group>"; };
 		10903B791FC5E271008F04E6 /* Speech_turn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speech_turn.swift; sourceTree = "<group>"; };
 		10903B7B1FC5E2A8008F04E6 /* Audio_segment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio_segment.swift; sourceTree = "<group>"; };
 		10903B7E1FC5EB57008F04E6 /* 7127-75946-0002.flac */ = {isa = PBXFileReference; lastKnownFileType = file; path = "7127-75946-0002.flac"; sourceTree = "<group>"; };
@@ -270,8 +164,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				10B07E9C1FCF058D009A40B0 /* Slt.framework in Frameworks */,
-				10B07E9D1FCF058D009A40B0 /* OpenEars.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +200,7 @@
 		10567F6C1FC30FD200BE1282 = {
 			isa = PBXGroup;
 			children = (
+				1081A6C92043440B0086FB8C /* AIToolbox.xcodeproj */,
 				10B0807D1FCF12F5009A40B0 /* bridging_header.h */,
 				1068B231204077400029D0E3 /* training_data */,
 				1053B6E11FD999D1002C1C92 /* Mfcc */,
@@ -421,178 +314,21 @@
 			path = training_data;
 			sourceTree = "<group>";
 		};
-		1068B23C204078560029D0E3 /* AIToolbox */ = {
+		1081A6CA2043440B0086FB8C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1068B23D204078560029D0E3 /* LICENSE.md */,
-				1068B23E204078560029D0E3 /* CONTRIBUTIONS.md */,
-				1068B23F204078560029D0E3 /* PlotImage2.png */,
-				1068B240204078560029D0E3 /* iOS Playgrounds */,
-				1068B245204078560029D0E3 /* AIToolboxIOS */,
-				1068B248204078560029D0E3 /* AIToolbox copy-Info.plist */,
-				1068B249204078560029D0E3 /* AIToolboxTests */,
-				1068B25F204078560029D0E3 /* AIToolbox.xcodeproj */,
-				1068B262204078560029D0E3 /* README.md */,
-				1068B263204078560029D0E3 /* Manual */,
-				1068B269204078560029D0E3 /* .gitignore */,
-				1068B26A204078560029D0E3 /* PlotImage.png */,
-				1068B26B204078560029D0E3 /* Playgrounds */,
-				1068B26F204078560029D0E3 /* AIToolboxIOSTests */,
-				1068B271204078560029D0E3 /* AIToolbox */,
-				1068B289204078560029D0E3 /* Package */,
-			);
-			name = AIToolbox;
-			path = ../Downloads/AIToolbox;
-			sourceTree = "<group>";
-		};
-		1068B240204078560029D0E3 /* iOS Playgrounds */ = {
-			isa = PBXGroup;
-			children = (
-				1068B241204078560029D0E3 /* ConnectFourAlphaBeta.playground */,
-				1068B242204078560029D0E3 /* LinearRegression.playground */,
-				1068B243204078560029D0E3 /* SupportVectorMachine.playground */,
-				1068B244204078560029D0E3 /* NeuralNetwork.playground */,
-			);
-			path = "iOS Playgrounds";
-			sourceTree = "<group>";
-		};
-		1068B245204078560029D0E3 /* AIToolboxIOS */ = {
-			isa = PBXGroup;
-			children = (
-				1068B246204078560029D0E3 /* MLUIView.swift */,
-				1068B247204078560029D0E3 /* Info.plist */,
-			);
-			path = AIToolboxIOS;
-			sourceTree = "<group>";
-		};
-		1068B249204078560029D0E3 /* AIToolboxTests */ = {
-			isa = PBXGroup;
-			children = (
-				1068B24A204078560029D0E3 /* KMeansTest.swift */,
-				1068B24B204078560029D0E3 /* MDPTests.swift */,
-				1068B24C204078560029D0E3 /* ValidationTests.swift */,
-				1068B24D204078560029D0E3 /* TreeTests.swift */,
-				1068B24E204078560029D0E3 /* AlphaBetaTests.swift */,
-				1068B24F204078560029D0E3 /* DeepNetworkTests.swift */,
-				1068B250204078560029D0E3 /* MetalNeuralNetworkTests.swift */,
-				1068B251204078560029D0E3 /* SVMTests.swift */,
-				1068B252204078560029D0E3 /* ConstraintPropogationTests.swift */,
-				1068B253204078560029D0E3 /* GaussianTests.swift */,
-				1068B254204078560029D0E3 /* PCATests.swift */,
-				1068B255204078560029D0E3 /* NeuralNetworkTests.swift */,
-				1068B256204078560029D0E3 /* LSTMTests.swift */,
-				1068B257204078560029D0E3 /* LogisticRegressionTests.swift */,
-				1068B258204078560029D0E3 /* GraphTests.swift */,
-				1068B259204078560029D0E3 /* SVMTests with iris.swift */,
-				1068B25A204078560029D0E3 /* LinearRegressionTests.swift */,
-				1068B25B204078560029D0E3 /* QueueTests.swift */,
-				1068B25C204078560029D0E3 /* NonLinearRegressionTests.swift */,
-				1068B25D204078560029D0E3 /* Info.plist */,
-				1068B25E204078560029D0E3 /* MixtureOfGaussianTests.swift */,
-			);
-			path = AIToolboxTests;
-			sourceTree = "<group>";
-		};
-		1068B260204078560029D0E3 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				1068B2A1204078570029D0E3 /* AIToolbox.framework */,
-				1068B2A3204078570029D0E3 /* AIToolboxTests.xctest */,
-				1068B2A5204078570029D0E3 /* AIToolbox.framework */,
-				1068B2A7204078570029D0E3 /* AIToolboxIOSTests.xctest */,
-				1068B2A9204078570029D0E3 /* AIToolbox copy.framework */,
+				1081A6D22043440C0086FB8C /* AIToolbox.framework */,
+				1081A6D42043440C0086FB8C /* AIToolboxTests.xctest */,
+				1081A6D62043440C0086FB8C /* AIToolbox.framework */,
+				1081A6D82043440C0086FB8C /* AIToolboxIOSTests.xctest */,
+				1081A6DA2043440C0086FB8C /* AIToolbox copy.framework */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		1068B263204078560029D0E3 /* Manual */ = {
-			isa = PBXGroup;
-			children = (
-				1068B264204078560029D0E3 /* Classes.md */,
-				1068B265204078560029D0E3 /* Structures.md */,
-				1068B266204078560029D0E3 /* Protocols.md */,
-				1068B267204078560029D0E3 /* AIToolbox.md */,
-				1068B268204078560029D0E3 /* Enumerations.md */,
-			);
-			path = Manual;
-			sourceTree = "<group>";
-		};
-		1068B26B204078560029D0E3 /* Playgrounds */ = {
-			isa = PBXGroup;
-			children = (
-				1068B26C204078560029D0E3 /* LinearRegression.playground */,
-				1068B26D204078560029D0E3 /* SupportVectorMachine.playground */,
-				1068B26E204078560029D0E3 /* NeuralNetwork.playground */,
-			);
-			path = Playgrounds;
-			sourceTree = "<group>";
-		};
-		1068B26F204078560029D0E3 /* AIToolboxIOSTests */ = {
-			isa = PBXGroup;
-			children = (
-				1068B270204078560029D0E3 /* Info.plist */,
-			);
-			path = AIToolboxIOSTests;
-			sourceTree = "<group>";
-		};
-		1068B271204078560029D0E3 /* AIToolbox */ = {
-			isa = PBXGroup;
-			children = (
-				1068B272204078560029D0E3 /* LinearRegression.swift */,
-				1068B273204078560029D0E3 /* DeepNetworkOperator.swift */,
-				1068B274204078560029D0E3 /* MLView.swift */,
-				1068B275204078560029D0E3 /* DeepNeuralNetwork.swift */,
-				1068B276204078560029D0E3 /* PrincipalComponantAnalysis.swift */,
-				1068B277204078560029D0E3 /* MetalNeuralNetworkShaders.swift */,
-				1068B278204078560029D0E3 /* LogisticRegression.swift */,
-				1068B279204078560029D0E3 /* AIToolbox.h */,
-				1068B27A204078560029D0E3 /* DeepNonLinearity.swift */,
-				1068B27B204078560029D0E3 /* MetalNeuralNetwork.swift */,
-				1068B27C204078560029D0E3 /* NonLinearRegression.swift */,
-				1068B27D204078560029D0E3 /* Validation.swift */,
-				1068B27E204078560029D0E3 /* Convolution.swift */,
-				1068B27F204078560029D0E3 /* DeepNetwork.swift */,
-				1068B280204078560029D0E3 /* MetalNeuralNetworkShaders.metal */,
-				1068B281204078560029D0E3 /* DeepChannel.swift */,
-				1068B282204078560029D0E3 /* DeepLayer.swift */,
-				1068B283204078560029D0E3 /* Pooling.swift */,
-				1068B284204078560029D0E3 /* MixtureOfGaussians.swift */,
-				1068B285204078560029D0E3 /* AlphaBeta.swift */,
-				1068B286204078560029D0E3 /* MLPersistenceProtocol.swift */,
-				1068B287204078560029D0E3 /* Info.plist */,
-				1068B288204078560029D0E3 /* MarkovDecisionProcess.swift */,
-			);
-			path = AIToolbox;
-			sourceTree = "<group>";
-		};
-		1068B289204078560029D0E3 /* Package */ = {
-			isa = PBXGroup;
-			children = (
-				1068B28A204078560029D0E3 /* MachineLearningProtocols.swift */,
-				1068B28B204078560029D0E3 /* Kernel.swift */,
-				1068B28C204078560029D0E3 /* KMeans.swift */,
-				1068B28D204078560029D0E3 /* SVM.swift */,
-				1068B28E204078560029D0E3 /* Linux_Accelerate_Wrapper.swift */,
-				1068B28F204078560029D0E3 /* LSTMNeuralNetwork.swift */,
-				1068B290204078560029D0E3 /* ConstraintPropogation.swift */,
-				1068B291204078560029D0E3 /* RecurrentNeuralNetwork.swift */,
-				1068B292204078560029D0E3 /* Graph.swift */,
-				1068B293204078560029D0E3 /* DataSet.swift */,
-				1068B294204078560029D0E3 /* NeuralNetwork.swift */,
-				1068B295204078560029D0E3 /* Gaussian.swift */,
-				1068B296204078560029D0E3 /* Queue.swift */,
-				1068B297204078560029D0E3 /* Package.swift */,
-				1068B298204078560029D0E3 /* SVMExtensions.swift */,
-				1068B299204078560029D0E3 /* PolicyGradient.swift */,
-				1068B29A204078560029D0E3 /* GeneticAlgorithm.swift */,
-			);
-			path = Package;
 			sourceTree = "<group>";
 		};
 		10B07E951FCF04A9009A40B0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1068B23C204078560029D0E3 /* AIToolbox */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -634,12 +370,10 @@
 				E4C7118C1B2BC31B3FCC0648 /* [CP] Embed Pods Frameworks */,
 				76EC28708E262AB6B87A2F54 /* [CP] Copy Pods Resources */,
 				1068B2AD204081C80029D0E3 /* Embed PlugIns */,
-				1068B2B2204081EF0029D0E3 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				1068B2B1204081EE0029D0E3 /* PBXTargetDependency */,
 			);
 			name = asr_project;
 			productName = asr_project;
@@ -727,8 +461,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 1068B260204078560029D0E3 /* Products */;
-					ProjectRef = 1068B25F204078560029D0E3 /* AIToolbox.xcodeproj */;
+					ProductGroup = 1081A6CA2043440B0086FB8C /* Products */;
+					ProjectRef = 1081A6C92043440B0086FB8C /* AIToolbox.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -741,39 +475,39 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		1068B2A1204078570029D0E3 /* AIToolbox.framework */ = {
+		1081A6D22043440C0086FB8C /* AIToolbox.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = AIToolbox.framework;
-			remoteRef = 1068B2A0204078570029D0E3 /* PBXContainerItemProxy */;
+			remoteRef = 1081A6D12043440C0086FB8C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		1068B2A3204078570029D0E3 /* AIToolboxTests.xctest */ = {
+		1081A6D42043440C0086FB8C /* AIToolboxTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = AIToolboxTests.xctest;
-			remoteRef = 1068B2A2204078570029D0E3 /* PBXContainerItemProxy */;
+			remoteRef = 1081A6D32043440C0086FB8C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		1068B2A5204078570029D0E3 /* AIToolbox.framework */ = {
+		1081A6D62043440C0086FB8C /* AIToolbox.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = AIToolbox.framework;
-			remoteRef = 1068B2A4204078570029D0E3 /* PBXContainerItemProxy */;
+			remoteRef = 1081A6D52043440C0086FB8C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		1068B2A7204078570029D0E3 /* AIToolboxIOSTests.xctest */ = {
+		1081A6D82043440C0086FB8C /* AIToolboxIOSTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = AIToolboxIOSTests.xctest;
-			remoteRef = 1068B2A6204078570029D0E3 /* PBXContainerItemProxy */;
+			remoteRef = 1081A6D72043440C0086FB8C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		1068B2A9204078570029D0E3 /* AIToolbox copy.framework */ = {
+		1081A6DA2043440C0086FB8C /* AIToolbox copy.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = "AIToolbox copy.framework";
-			remoteRef = 1068B2A8204078570029D0E3 /* PBXContainerItemProxy */;
+			remoteRef = 1081A6D92043440C0086FB8C /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1018,11 +752,6 @@
 			isa = PBXTargetDependency;
 			target = 10567F741FC30FD200BE1282 /* asr_project */;
 			targetProxy = 10567F971FC30FD300BE1282 /* PBXContainerItemProxy */;
-		};
-		1068B2B1204081EE0029D0E3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = AIToolboxIOS;
-			targetProxy = 1068B2B0204081EE0029D0E3 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
