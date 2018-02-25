@@ -51,5 +51,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Need permission for speech recognition</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Need permision to record audio from the micrpohone</string>
 </dict>
 </plist>

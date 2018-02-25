@@ -9,12 +9,20 @@
 import Foundation
 
 class Audio_frame {
-    private var sample_list:[Float] = [];
-    
-    func Audio_frame(samples:[Float]){
+    public var sample_list:[Float];
+    var zcr:Float
+    var rms:Double
+    init(samples:[Float]) {
         self.sample_list = samples;
+        self.zcr = Process_helper.calculate_zcr(audio_frame: sample_list)
+        self.rms = Process_helper.calculate_rms(audio_frame: sample_list)
     }
-    
-    
+    func get_samples()-> [Float]{
+        return sample_list
+    }
+    func print_features(){
+        print("ZCR: \(zcr)")
+        print("RMS: \(rms)")
+    }
     
 }

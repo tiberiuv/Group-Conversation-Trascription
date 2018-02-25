@@ -17,19 +17,19 @@ class Process_helper {
      crossing rates in a frame
      * Higher value of ZCR for silence or background noise
      */
-    func calculate_zcr(audio_frame:[Float]) -> Double{
-        var sum: Double = 0
+    static func calculate_zcr(audio_frame:[Float]) -> Float{
+        var sum: Float = 0
         for i in 2...audio_frame.count-1{
-            sum += Double(abs(sign(audio_frame[i]) - sign(audio_frame[i-1])))
+            sum += abs(sign(audio_frame[i]) - sign(audio_frame[i-1]) )
         }
-        return (sum / 2)
+        return (sum / 2 )
     }
     
     /*  Root Mean Square Represents the energy of a frame
      Equation: sum of squares of each sample in a frame
-     * Higher RMS for voice segment
+     * Higher RMS for voiced frame
      */
-    func calculate_rms(audio_frame:[Float]) -> Double{
+    static func calculate_rms(audio_frame:[Float]) -> Double{
         var sum: Double = 0.0
         for sample in audio_frame{
             sum += Double(sample * sample)
@@ -43,7 +43,7 @@ class Process_helper {
      half of the average of the segment
      * Higher LEFR for voiced segment
      */
-    func low_energy_framte_rate(segment:[[Float]]) -> Int{
+    static func low_energy_framte_rate(segment:[[Float]]) -> Int{
         var frame_rms:[Double] = []
         var total_rms = 0.0;
         for frame in segment{
@@ -57,8 +57,17 @@ class Process_helper {
         }
         return count_rms
     }
-    
-    func is_voiced(sound_samples:[Float], vol_threshold:Float) -> Bool{
+    static func geometric_mean(samples: [Float]) -> Double {
+
+        let total = samples.reduce(1.0) {x,y in Double(x) * Double(y)}
+
+        return abs(pow(total, 1.0/Double(samples.count)))
+    }
+    static func ar_mean(samples: [Float]) -> Double {
+        let total: Double = samples.reduce(0.0) { x,y in Double(x) + Double(y)}
+        return total / Double(samples.count)
+    }
+    static func is_voiced(sound_samples:[Float], vol_threshold:Float) -> Bool{
         var volume: Float = 0
         
         for sample in sound_samples{
@@ -70,5 +79,34 @@ class Process_helper {
             return false
         }
     }
-    
+    static func buffer_to_float(buffer: AVAudioPCMBuffer) -> [Float] {
+        return Array(UnsafeBufferPointer(start: buffer.floatChannelData?[0], count:Int(buffer.frameLength)));
+    }
+    static func float_to_buffer(samples :[Float], audio_format: AVAudioFormat) -> AVAudioPCMBuffer{
+        let buffer = AVAudioPCMBuffer(pcmFormat: audio_format, frameCapacity: AVAudioFrameCount(samples.count))
+        let pointer = UnsafePointer(samples)
+        
+        buffer?.floatChannelData![0].assign(from: pointer, count: samples.count)
+        buffer?.frameLength = AVAudioFrameCount(samples.count)
+        return buffer!;
+    }
+    static func split_audio(audio_file :Audio_file) -> Speech_turn{
+        let file = audio_file.file;
+        let buffer = AVAudioPCMBuffer(pcmFormat: file.fileFormat, frameCapacity: AVAudioFrameCount(file.length))
+        var segment = Audio_segment()
+        let turn = Speech_turn()
+        while(file.framePosition < file.length) {
+            // read new frame into buffer
+            try! file.read(into: buffer!, frameCount: 512)
+            
+            let frame = Audio_frame(samples: Array(UnsafeBufferPointer(start: buffer?.floatChannelData?[0], count: Int(buffer!.frameLength))))
+            segment.append(frame: frame)
+            // segment of data 0.5 sec
+            if(segment.frame_list.count >= Int(audio_file.sampling_rate / 2 / 512) ){
+                turn.segments.append(segment)
+                segment = Audio_segment()
+            }
+        }
+        return turn
+    }
 }
