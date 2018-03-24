@@ -57,28 +57,19 @@ class Process_helper {
         }
         return count_rms
     }
-    static func geometric_mean(samples: [Float]) -> Double {
-
-        let total = samples.reduce(1.0) {x,y in Double(x) * Double(y)}
-
-        return abs(pow(total, 1.0/Double(samples.count)))
-    }
-    static func ar_mean(samples: [Float]) -> Double {
-        let total: Double = samples.reduce(0.0) { x,y in Double(x) + Double(y)}
-        return total / Double(samples.count)
-    }
-    static func is_voiced(sound_samples:[Float], vol_threshold:Float) -> Bool{
-        var volume: Float = 0
-        
-        for sample in sound_samples{
-            volume += abs(sample)
-        }
-        if (volume > vol_threshold) {
-            return true
-        } else {
-            return false
-        }
-    }
+    
+//    static func is_voiced(sound_samples:[Float], vol_threshold:Float) -> Bool{
+//        var volume: Float = 0
+//
+//        for sample in sound_samples{
+//            volume += abs(sample)
+//        }
+//        if (volume > vol_threshold) {
+//            return true
+//        } else {
+//            return false
+//        }
+//    }
     static func buffer_to_float(buffer: AVAudioPCMBuffer) -> [Float] {
         return Array(UnsafeBufferPointer(start: buffer.floatChannelData?[0], count:Int(buffer.frameLength)));
     }
@@ -108,5 +99,15 @@ class Process_helper {
             }
         }
         return turn
+    }
+    static func geometric_mean(samples: [Float]) -> Double {
+        let total = samples.reduce(1.0) {x,y in Double(x) * Double(y)};
+        
+        return abs(pow(total, 1.0/Double(samples.count)));
+    }
+    static func ar_mean(samples: [Float]) -> Double {
+        let total: Double = samples.reduce(0.0) { x,y in Double(x) + Double(y)};
+        
+        return total / Double(samples.count);
     }
 }

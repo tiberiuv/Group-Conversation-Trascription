@@ -85,7 +85,7 @@ private:
     
         // Butterfly computations
         for (i=0; i<=N/2-1; i++) {
-            c_d t = Xjo[i], tw = int(twiddle[N][i]);
+            c_d t = Xjo[i], tw = twiddle[N][i];
             Xjo[i] = t + tw * Xjo[i+N/2];
             Xjo[i+N/2] = t - tw * Xjo[i+N/2];
         }
