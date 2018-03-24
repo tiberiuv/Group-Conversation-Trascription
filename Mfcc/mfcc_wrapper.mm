@@ -9,9 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "mfcc_wrapper.h"
 #import "mfcc.cc"
-//#import <WebKit/WebKit.h>
 #import <WebRTC/WebRTC.h>
-//#import "src-master-common_audio-vad/webrtc_vad.c"
+
 
 
 @implementation mfcc_wrapper
@@ -23,20 +22,18 @@
     int frameShift = 10;
     int lowFreq = 50;
     int highFreq = samplingRate / 2;
+    bool appendDeltas = true;
     
     // Initialise MFCC class instance
-    MFCC mfccComputer (samplingRate, numCepstra, winLength, frameShift, numFilters, lowFreq, highFreq);
+    MFCC mfccComputer (samplingRate, numCepstra, winLength, frameShift, numFilters, lowFreq, highFreq, appendDeltas);
     auto mfccs = mfccComputer.process_floats(samples, size);
-
-    double* vector_mfcc = new double[mfccs.size()*12];
-    vector_mfcc[0] = mfccs.size();
-    for (int i=1; i<mfccs.size(); i++) {
-        for(int k=0; k<mfccs[0].size(); k++)
-            vector_mfcc[i] = mfccs[i][k];
-        
+    std::vector<double> flat_mfccs;
+    flat_mfccs.push_back(mfccs.size());
+    for(const auto &v : mfccs) {
+        flat_mfccs.insert(flat_mfccs.end(), v.begin()+1, v.end()); // begin()+1 to get rid of first cepestrum(energy)
     }
-    return vector_mfcc;
     
+    return flat_mfccs.data();
 }
 
 @end

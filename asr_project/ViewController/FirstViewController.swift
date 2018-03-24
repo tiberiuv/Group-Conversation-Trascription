@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import Speech
 
 class FirstViewController: UIViewController {
-
+    var isRecordingPermissionGranted = false;
     @IBOutlet weak var file_select_lable: UILabel!
     @IBOutlet weak var file_path_text_box: UITextField!
     
@@ -21,6 +22,7 @@ class FirstViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        checkRecordingPermission()
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -43,6 +45,30 @@ class FirstViewController: UIViewController {
     }
     func update_transcript(lable: String) {
         get_transcript_lable.text = lable
+    }
+    func checkRecordingPermission() {
+        switch AVAudioSession.sharedInstance().recordPermission() {
+        case AVAudioSessionRecordPermission.granted:
+            isRecordingPermissionGranted = true;
+            break
+        case AVAudioSessionRecordPermission.denied:
+            isRecordingPermissionGranted = false;
+        case AVAudioSessionRecordPermission.undetermined:
+            AVAudioSession.sharedInstance().requestRecordPermission() {
+                [unowned self] allowed in DispatchQueue.main.sync {
+                    if allowed {
+                        self.isRecordingPermissionGranted = true;
+                    }
+                    else {
+                        self.isRecordingPermissionGranted = false;
+                    }
+                }
+            }
+            break
+        }
+    }
+    func checkRecognizerPermission() {
+        
     }
     
 }

@@ -10,14 +10,15 @@ import Foundation
 //import WebRTC
 class VAD {
 //    var segment: Audio_segment;
-    private var framesize:Double = 10 //10 ms
+    private var framesize:Double = 25 //10 ms
     private var no_frames = 0;
     private var num_samples = 0;
     // default threshold params
     private let def_e: Double = 40;
     private let def_f: Double = 185;
     private let def_sfm: Double = 5;
-    var pcm_buffer: AVAudioPCMBuffer;
+    var pcm_buffer: AVAudioPCMBuffer?;
+    var samples: [Float]?;
     
     init(buffer: AVAudioPCMBuffer) {
         self.pcm_buffer = buffer;
@@ -25,9 +26,22 @@ class VAD {
         self.no_frames = Int(Double(buffer.frameLength) / Double(num_samples));
         
     }
+    init(speech_samples: [Float], sampling_rate: Double) {
+        self.samples = speech_samples;
+        self.num_samples = Int(sampling_rate * (framesize / 1000.0));
+        self.no_frames = speech_samples.count / num_samples;
+    }
+    func reinit(buffer: AVAudioPCMBuffer) {
+        self.pcm_buffer = buffer;
+        self.num_samples = Int(buffer.format.sampleRate * (framesize / 1000.0));
+        self.no_frames = Int(Double(buffer.frameLength) / Double(num_samples));
+    }
+    // energy is root mean square(rms) of a frame
+    // frequency is the most dominant frequency in the fft bins of a frame
+    // sfm is the spectral flatness measure of the power spectrum of a frame
     func detect(speech: (_ speech_time: Double) -> Void){
-
-        print("Duration \(Double(pcm_buffer.frameLength) / pcm_buffer.format.sampleRate)")
+        
+        print("Duration \(Double((pcm_buffer!.frameLength)) / (pcm_buffer?.format.sampleRate)!)")
         // thresholds based on float stream
         var thr_energy: Double = 0.0;
         var thr_freq: Double = 0.0;
@@ -43,11 +57,11 @@ class VAD {
         var sfm = 0.0;
         var flag = false
         for i in 0...no_frames {
-            samples =  Array(UnsafeBufferPointer(start: pcm_buffer.floatChannelData?[0].advanced(by: i*num_samples), count:num_samples)); // 1 frame worth of
+            samples =  Array(UnsafeBufferPointer(start: pcm_buffer?.floatChannelData?[0].advanced(by: i*num_samples), count:num_samples)); // 1 frame worth of
             let energy = Process_helper.calculate_rms(audio_frame: samples); // energy of 1 frame
             do {
                 let fft_buffer = try fft.transform(samples: samples);
-                freq = try Double(fft.domin_freq(fft_buffer: fft_buffer)) * (pcm_buffer.format.sampleRate/2) / Double(fft_buffer.count);
+                freq = try Double(fft.domin_freq(fft_buffer: fft_buffer)) * ((pcm_buffer?.format.sampleRate)!/2) / Double(fft_buffer.count);
                 let power_spectrum = fft.get_power_spectrum(fft_buffer: fft_buffer)
                 let gm = Process_helper.geometric_mean(samples: power_spectrum)
                 let ar = Process_helper.ar_mean(samples: power_spectrum)
@@ -77,16 +91,20 @@ class VAD {
                 }
                 thr_energy = def_e * log(min_e);
                 var speech_time = 0.0;
+                
+                // speech happening
                 if(speech_c >= 5 && flag == false) {
-                    speech_time = ( Double(i*num_samples) / pcm_buffer.format.sampleRate)
+                    speech_time = ( Double(i*num_samples) / (pcm_buffer?.format.sampleRate)!)
 //                    print("SPEECH !!! at : \(speech_time)")
                     speech(speech_time)
                     flag = true;
                 }
+                
+                // no speech happening
                 if(silence_c >= 10) {
 //                    print("NO SPEECH !!! at : \( Double(i*num_samples) / pcm_buffer.format.sampleRate)")
                     if(speech_time != 0.0) {
-                        speech_time = ( Double(i*num_samples) / pcm_buffer.format.sampleRate)
+                        speech_time = ( Double(i*num_samples) / (pcm_buffer?.format.sampleRate)!)
                         speech(speech_time)
                         
                     }

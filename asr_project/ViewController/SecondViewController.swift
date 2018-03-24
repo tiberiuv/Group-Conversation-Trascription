@@ -13,6 +13,7 @@ class SecondViewController: UIViewController {
     @IBOutlet weak var transcript_label: UILabel!
     @IBOutlet weak var start_rec_button: UIButton!
     @IBOutlet weak var stop_rec_button: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     let audio_engine = AVAudioEngine()
     let speechRecognizer: SFSpeechRecognizer? = SFSpeechRecognizer(locale: Locale.init(identifier: "en-UK"))
@@ -21,6 +22,7 @@ class SecondViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -30,12 +32,12 @@ class SecondViewController: UIViewController {
     }
 
     @IBAction func stop_recording(_ sender: Any) {
-        self.recognitionTask?.finish();
-        self.recognitionTask = nil;
-        self.audio_engine.reset();
+        self.audio_engine.stop();
+        self.recognitionTask?.cancel();
         self.request.endAudio();
     }
     func recognize() {
+
         let node = audio_engine.inputNode
         let recording_format = node.outputFormat(forBus: 0)
         node.installTap(onBus: 0, bufferSize: 1024, format: recording_format) {
@@ -52,24 +54,44 @@ class SecondViewController: UIViewController {
         guard let my_recog = SFSpeechRecognizer() else { return }
         
         if !my_recog.isAvailable {
+            print("Speech recognition is not currently available please try again later.")
             return
         }
         self.recognitionTask = speechRecognizer?.recognitionTask(with: request, resultHandler: {(result, error) in
-            
-            if result != nil {
-                let result = (result?.bestTranscription.formattedString)!
-                print(result)
-                self.transcript_label.text = result;
+            guard let result = result else {
+                print("An error occured while trying to transcribe the file")
+                return;
             }
-                
-            else if let error = error {
-                print("Errrrorrrrr \(error)")
-            }
+            self.updateUITranscript(result.bestTranscription)
         })
     }
     @IBAction func start_recording(_ sender: Any) {
         self.recognize();
     }
-    
+
+    fileprivate func updateUIFullTranscript(_ transcription: String) {
+        DispatchQueue.main.async {
+            [unowned self] in
+            self.transcript_label.text = transcription;
+            UIView.animate(withDuration: 0.5, animations: {
+                self.activityIndicator.isHidden = true;
+                self.transcript_label.isHidden = false;
+                
+            }, completion: { _ in
+                self.activityIndicator.stopAnimating();
+                //self.transcripeButton.isEnabled = true;
+            })
+        }
+    }
+    fileprivate func updateUITranscript(_ transcription: SFTranscription) {
+        self.transcript_label.text = transcription.formattedString;
+//        DispatchQueue.main.async {
+//            [unowned self] in
+//            self.activityIndicator.startAnimating()
+//            UIView.animate(withDuration: 0.5) {
+//                self.activityIndicator.isHidden = false;
+//            }
+//        }
+    }
 }
 

@@ -17,6 +17,8 @@
 //
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+// Changed added delta computation and usage for floats
 #include<iostream>
 #include<fstream>
 #include<algorithm>
@@ -43,6 +45,7 @@ private:
     double preEmphCoef, lowFreq, highFreq;
     v_d frame, powerSpectralCoef, lmfbCoef, hamming, mfcc, prevsamples;
     m_d fbank, dct;
+    bool appendDeltas;
 
 private:
     // Hertz to Mel conversion
@@ -128,7 +131,7 @@ private:
         for (int i=0; i<numFilters; i++)
             lmfbCoef[i] = std::log (lmfbCoef[i]);
     }
-    
+
     // Computing discrete cosine transform
     void applyDct(void) {
         mfcc.assign(numCepstra+1,0);
@@ -137,20 +140,32 @@ private:
                 mfcc[i] += dct[i][j] * lmfbCoef[j];
         }
     }
-    v_d computeDeltas(int N) {
+    v_d computeDeltas(v_d mfcc,int N) {
         v_d deltas;
         deltas.assign(mfcc.size(), 0);
         double denom = 0.0;
         for(int i = 1; i < N+1; i++) {
             denom += i*i;
         }
-        denom *= denom;
-        for(int i=0; i<mfcc.size(); i++) {
+        denom *= 2;
+        uint i1,i2;
+        for(int i=0; i<deltas.size(); i++) {
             double delta = 0.0;
+            
             for(int n = 1; n < N+1; n++) {
-                delta += mfcc[i+n] - mfcc[i-n];
+                if(i+n > mfcc.size()-1) {
+                    i1 = mfcc.size()-1;
+                } else {
+                    i1 = i+n;
+                }
+                if(i-n < 0) {
+                    i2 = 0;
+                } else {
+                    i2 = i-n;
+                }
+                delta += mfcc[i1] - mfcc[i2];
             }
-            deltas.push_back( delta / denom);
+            deltas[i] = delta / denom;
         }
         return deltas;
     }
@@ -223,17 +238,19 @@ private:
     std::string v_d_to_string (v_d vec) {
         std::stringstream vecStream;
         for (int i=0; i<vec.size()-1; i++) {
-            vecStream << std::scientific << vec[i];
+            //vecStream << std::scientific << vec[i];
+            vecStream << vec[i];
             vecStream << ", ";
         }
-        vecStream << std::scientific << vec.back();
+        //vecStream << std::scientific << vec.back();
+        vecStream <<  vec.back();
         vecStream << "\n";
         return vecStream.str();
     }
 
 public:
     // MFCC class constructor
-    MFCC(int sampFreq=16000, int nCep=12, int winLength=25, int frameShift=10, int numFilt=40, double lf=50, double hf=6500) {
+    MFCC(int sampFreq=16000, int nCep=12, int winLength=25, int frameShift=10, int numFilt=40, double lf=50, double hf=6500, bool addDeltas = false) {
         fs          = sampFreq;     // Sampling frequency
         numCepstra  = nCep;         // Number of cepstra
         numFFT      = 512;          // FFT size
@@ -243,7 +260,7 @@ public:
         highFreq    = hf;         // Filterbank high frequency cutoff in Hertz
         winLengthSamples   = winLength * fs / 1e3;  // winLength in milliseconds
         frameShiftSamples  = frameShift * fs / 1e3; // frameShift in milliseconds
-        
+        appendDeltas = addDeltas;
         numFFTBins = numFFT/2 + 1;
         powerSpectralCoef.assign (numFFTBins, 0);
         prevsamples.assign (winLengthSamples-frameShiftSamples, 0);
@@ -264,13 +281,19 @@ public:
         
         auto mfccs = std::vector<std::string>();
         auto mfccs_values = std::vector<v_d>();
-        mfccs_values.reserve(size / 400);
+        mfccs_values.reserve((size / 400) * numCepstra * 3);
         uint32_t count = buffer_length;
         while (count + buffer_len < size) {
             
             mfccs.push_back(processFrame(samples, buffer_len)); // string vals
+            if(appendDeltas) {
+                v_d deltas = computeDeltas(v_d(mfcc.begin()+1, mfcc.end()),2); // compute and append deltas to mfcc
+                v_d delta_deltas = computeDeltas(deltas,2); // compute and append deltas
+                mfcc.insert(std::end(mfcc), std::begin(deltas), std::end(deltas));
+                mfcc.insert(std::end(mfcc), std::begin(delta_deltas), std::end(delta_deltas));
+            }
             mfccs_values.push_back(mfcc); //double values
-//            std::cout << v_d_to_string(mfcc) << std::endl;
+            std::cout << v_d_to_string(mfcc) << std::endl;
             count += buffer_len;
             samples += buffer_len; // increment pointer to samples
         }
