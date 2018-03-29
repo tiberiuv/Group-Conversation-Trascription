@@ -293,7 +293,7 @@ public:
                 mfcc.insert(std::end(mfcc), std::begin(delta_deltas), std::end(delta_deltas));
             }
             mfccs_values.push_back(mfcc); //double values
-            std::cout << v_d_to_string(mfcc) << std::endl;
+//            std::cout << v_d_to_string(mfcc) << std::endl;
             count += buffer_len;
             samples += buffer_len; // increment pointer to samples
         }
