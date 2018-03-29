@@ -33,6 +33,7 @@
 		10A73B711FC6F27300F26885 /* S_recognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A73B701FC6F27300F26885 /* S_recognizer.swift */; };
 		10A9E8A32031C8FA00897B3D /* KNNDTW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A9E8A22031C8FA00897B3D /* KNNDTW.swift */; };
 		10B07E9E1FCF058D009A40B0 /* AcousticModelEnglish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 10B07E9B1FCF058D009A40B0 /* AcousticModelEnglish.bundle */; };
+		10B4DB20206CCF87000EEA24 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 10B4DB1F206CCF87000EEA24 /* .gitignore */; };
 		10BE2D1B2045A8CB0020CC71 /* MLPackWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 10BE2D1A2045A8CB0020CC71 /* MLPackWrapper.mm */; settings = {COMPILER_FLAGS = "-w"; }; };
 		10BE5F6C201CAC5F006D5AAD /* Fft_transformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BE5F6B201CAC5F006D5AAD /* Fft_transformer.swift */; };
 		10BE5F6E201CACF4006D5AAD /* Complex_buffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BE5F6D201CACF4006D5AAD /* Complex_buffer.swift */; };
@@ -173,6 +174,7 @@
 		10B07E9A1FCF058D009A40B0 /* OpenEars.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenEars.framework; sourceTree = "<group>"; };
 		10B07E9B1FCF058D009A40B0 /* AcousticModelEnglish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AcousticModelEnglish.bundle; sourceTree = "<group>"; };
 		10B0807D1FCF12F5009A40B0 /* bridging_header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = bridging_header.h; sourceTree = "<group>"; };
+		10B4DB1F206CCF87000EEA24 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		10BE2D1A2045A8CB0020CC71 /* MLPackWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MLPackWrapper.mm; sourceTree = "<group>"; };
 		10BE2D212045A91C0020CC71 /* MLPackWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MLPackWrapper.h; sourceTree = "<group>"; };
 		10BE5F6B201CAC5F006D5AAD /* Fft_transformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fft_transformer.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 		10567F6C1FC30FD200BE1282 = {
 			isa = PBXGroup;
 			children = (
+				10B4DB1F206CCF87000EEA24 /* .gitignore */,
 				106960F5204C499500F3DE40 /* mlpack-ios.xcodeproj */,
 				1081A6C92043440B0086FB8C /* AIToolbox.xcodeproj */,
 				10B0807D1FCF12F5009A40B0 /* bridging_header.h */,
@@ -561,6 +564,7 @@
 				10567F851FC30FD200BE1282 /* LaunchScreen.storyboard in Resources */,
 				10B07E9E1FCF058D009A40B0 /* AcousticModelEnglish.bundle in Resources */,
 				10567F821FC30FD200BE1282 /* Assets.xcassets in Resources */,
+				10B4DB20206CCF87000EEA24 /* .gitignore in Resources */,
 				10567F801FC30FD200BE1282 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
