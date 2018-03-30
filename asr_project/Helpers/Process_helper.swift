@@ -45,7 +45,7 @@ class Process_helper {
      */
     static func low_energy_framte_rate(segment:[[Float]]) -> Int{
         var frame_rms:[Double] = []
-        var total_rms = 0.0;
+        var total_rms = 0.0
         for frame in segment{
             frame_rms.append(calculate_rms(audio_frame: frame))
             total_rms += calculate_rms(audio_frame: frame)
@@ -71,7 +71,7 @@ class Process_helper {
 //        }
 //    }
     static func buffer_to_float(buffer: AVAudioPCMBuffer) -> [Float] {
-        return Array(UnsafeBufferPointer(start: buffer.floatChannelData?[0], count:Int(buffer.frameLength)));
+        return Array(UnsafeBufferPointer(start: buffer.floatChannelData?[0], count:Int(buffer.frameLength)))
     }
     static func float_to_buffer(samples :[Float], audio_format: AVAudioFormat) -> AVAudioPCMBuffer{
         let buffer = AVAudioPCMBuffer(pcmFormat: audio_format, frameCapacity: AVAudioFrameCount(samples.count))
@@ -79,10 +79,10 @@ class Process_helper {
         
         buffer?.floatChannelData![0].assign(from: pointer, count: samples.count)
         buffer?.frameLength = AVAudioFrameCount(samples.count)
-        return buffer!;
+        return buffer!
     }
     static func split_audio(audio_file :Audio_file) -> Speech_turn{
-        let file = audio_file.file;
+        let file = audio_file.file
         let buffer = AVAudioPCMBuffer(pcmFormat: file.fileFormat, frameCapacity: AVAudioFrameCount(file.length))
         var segment = Audio_segment()
         let turn = Speech_turn()
@@ -101,12 +101,15 @@ class Process_helper {
         return turn
     }
     static func geometric_mean(samples: [Float]) -> Double {
-        let total = samples.reduce(1.0) {x,y in Double(x) * Double(y)};
-        
-        return abs(pow(total, 1.0/Double(samples.count)));
+        var total = 1.0;
+        //let total = samples.reduce(1.0) {x,y in Double(x) * Double(y)}
+        for i in 0..<samples.count {
+            total *= Double(samples[i])
+        }
+        return abs(pow(total, 1.0/Double(samples.count)))
     }
     static func ar_mean(samples: [Float]) -> Double {
-        let total: Double = samples.reduce(0.0) { x,y in Double(x) + Double(y)};
+        let total: Double = samples.reduce(0.0) { x,y in Double(x) + Double(y)}
         
         return total / Double(samples.count);
     }

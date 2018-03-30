@@ -51,7 +51,7 @@ class Fft_transformer {
         return buffer
     }
     // Returns bin number of most dominant frequency
-    func domin_freq(fft_buffer: Buffer) throws -> Int {
+    func domin_freq(_ fft_buffer: Buffer) throws -> Int {
         var max: Double = 0.0;
         var index = 0;
         for i in 0...fft_buffer.elements.count-1 {
@@ -62,9 +62,23 @@ class Fft_transformer {
         }
         return index;
     }
-    func get_power_spectrum(fft_buffer: Buffer) -> [Float] {
-        return fft_buffer.elements.map {value in pow(abs(value),2)};
+    func getPowerSpectrum(_ fft_buffer: Buffer) -> [Float] {
+        return fft_buffer.elements.map {value in abs(pow(value,2))};
         
+    }
+    func getSpectralFlatness(_ fft_buffer: Buffer) -> Double {
+        let powerSpectrum = getPowerSpectrum(fft_buffer)
+        var gmMean = 0.0
+        var arMean = 0.0
+
+        for x in powerSpectrum {
+            gmMean += log(Double(x))
+            arMean += Double(x)
+        }
+        gmMean = exp(gmMean / Double(powerSpectrum.count))
+        arMean /= Double(powerSpectrum.count);
+        
+        return gmMean / arMean;
     }
     // MARK: - Helpers
     func sqrtq(_ x: [Float]) -> [Float] {

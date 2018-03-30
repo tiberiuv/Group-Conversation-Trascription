@@ -13,7 +13,7 @@
 @implementation MLPackWrapper : NSObject
 
 - (void)build_classifier:(double*) features and_size:(uint32_t) size {
-    mlpack::gmm::GMM::GMM gmm(4,12);
+    mlpack::gmm::GMM gmm(4,12);
 //    arma::fmat train_matrix;
     arma::dmat train_matrix(features, size, 12);
 //    gmm.Train(train_matrix);

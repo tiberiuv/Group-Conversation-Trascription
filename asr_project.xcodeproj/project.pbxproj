@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		10070E4B1FD3049F0077FAEF /* VAD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10070E4A1FD3049F0077FAEF /* VAD.swift */; };
-		1035924220307C9300B84721 /* mfcc_mine.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1035924120307C9200B84721 /* mfcc_mine.cc */; };
-		103A1A8F201E250F005845B0 /* MFCC_Computer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 103A1A8E201E250E005845B0 /* MFCC_Computer.swift */; };
-		1045AF3A204EC13400D5C31F /* libmlpack-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 106960FA204C499500F3DE40 /* libmlpack-ios.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		1053B6E51FD999FA002C1C92 /* mfcc.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1053B6E21FD999F7002C1C92 /* mfcc.cc */; };
 		1053B6E61FD999FA002C1C92 /* compute-mfcc.cc in Sources */ = {isa = PBXBuildFile; fileRef = 1053B6E41FD999F8002C1C92 /* compute-mfcc.cc */; };
 		1053B6E91FD99A2D002C1C92 /* mfcc_wrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1053B6E81FD99A2D002C1C92 /* mfcc_wrapper.mm */; };
@@ -26,7 +23,7 @@
 		10567FB01FC3137600BE1282 /* Audio_frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10567FAF1FC3137600BE1282 /* Audio_frame.swift */; };
 		10567FB21FC3176300BE1282 /* Audio_file.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10567FB11FC3176300BE1282 /* Audio_file.swift */; };
 		10577D0F204E0BB500E444DE /* AIToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1081A6D62043440C0086FB8C /* AIToolbox.framework */; };
-		10577D10204E0BB500E444DE /* AIToolbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1081A6D62043440C0086FB8C /* AIToolbox.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		10577D10204E0BB500E444DE /* AIToolbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1081A6D62043440C0086FB8C /* AIToolbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		10903B7A1FC5E271008F04E6 /* Speech_turn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10903B791FC5E271008F04E6 /* Speech_turn.swift */; };
 		10903B7C1FC5E2A8008F04E6 /* Audio_segment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10903B7B1FC5E2A8008F04E6 /* Audio_segment.swift */; };
 		1098EF3220543B120003B896 /* data_friends in Resources */ = {isa = PBXBuildFile; fileRef = 1098EF3120543B110003B896 /* data_friends */; };
@@ -34,19 +31,11 @@
 		10A9E8A32031C8FA00897B3D /* KNNDTW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A9E8A22031C8FA00897B3D /* KNNDTW.swift */; };
 		10B07E9E1FCF058D009A40B0 /* AcousticModelEnglish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 10B07E9B1FCF058D009A40B0 /* AcousticModelEnglish.bundle */; };
 		10B4DB20206CCF87000EEA24 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 10B4DB1F206CCF87000EEA24 /* .gitignore */; };
-		10BE2D1B2045A8CB0020CC71 /* MLPackWrapper.mm in Sources */ = {isa = PBXBuildFile; fileRef = 10BE2D1A2045A8CB0020CC71 /* MLPackWrapper.mm */; settings = {COMPILER_FLAGS = "-w"; }; };
 		10BE5F6C201CAC5F006D5AAD /* Fft_transformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BE5F6B201CAC5F006D5AAD /* Fft_transformer.swift */; };
 		10BE5F6E201CACF4006D5AAD /* Complex_buffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BE5F6D201CACF4006D5AAD /* Complex_buffer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1045AF3B204ED75300D5C31F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 106960F5204C499500F3DE40 /* mlpack-ios.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 79C8F3391902355200064E3E;
-			remoteInfo = "mlpack-ios";
-		};
 		10567F8C1FC30FD300BE1282 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 10567F6D1FC30FD200BE1282 /* Project object */;
@@ -192,7 +181,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				10577D0F204E0BB500E444DE /* AIToolbox.framework in Frameworks */,
-				1045AF3A204EC13400D5C31F /* libmlpack-ios.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,7 +389,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				1045AF3C204ED75300D5C31F /* PBXTargetDependency */,
 				10577D12204E0BB500E444DE /* PBXTargetDependency */,
 			);
 			name = asr_project;
@@ -461,7 +448,7 @@
 					New,
 				);
 				LastSwiftUpdateCheck = 0910;
-				LastUpgradeCheck = 0910;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Tiberiu Simion Voicu";
 				TargetAttributes = {
 					10567F741FC30FD200BE1282 = {
@@ -745,13 +732,10 @@
 				1053B6E91FD99A2D002C1C92 /* mfcc_wrapper.mm in Sources */,
 				10567FAE1FC312A600BE1282 /* Process_helper.swift in Sources */,
 				10A73B711FC6F27300F26885 /* S_recognizer.swift in Sources */,
-				10BE2D1B2045A8CB0020CC71 /* MLPackWrapper.mm in Sources */,
 				10903B7C1FC5E2A8008F04E6 /* Audio_segment.swift in Sources */,
 				10567FB01FC3137600BE1282 /* Audio_frame.swift in Sources */,
 				10070E4B1FD3049F0077FAEF /* VAD.swift in Sources */,
 				10BE5F6C201CAC5F006D5AAD /* Fft_transformer.swift in Sources */,
-				1035924220307C9300B84721 /* mfcc_mine.cc in Sources */,
-				103A1A8F201E250F005845B0 /* MFCC_Computer.swift in Sources */,
 				10903B7A1FC5E271008F04E6 /* Speech_turn.swift in Sources */,
 				1053B6E61FD999FA002C1C92 /* compute-mfcc.cc in Sources */,
 				10567F791FC30FD200BE1282 /* AppDelegate.swift in Sources */,
@@ -781,11 +765,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		1045AF3C204ED75300D5C31F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "mlpack-ios";
-			targetProxy = 1045AF3B204ED75300D5C31F /* PBXContainerItemProxy */;
-		};
 		10567F8D1FC30FD300BE1282 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 10567F741FC30FD200BE1282 /* asr_project */;
@@ -837,6 +816,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -844,6 +824,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -894,6 +875,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -901,6 +883,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

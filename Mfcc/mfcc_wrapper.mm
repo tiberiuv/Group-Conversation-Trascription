@@ -28,12 +28,14 @@
     MFCC mfccComputer (samplingRate, numCepstra, winLength, frameShift, numFilters, lowFreq, highFreq, appendDeltas);
     auto mfccs = mfccComputer.process_floats(samples, size);
     std::vector<double> flat_mfccs;
-    flat_mfccs.reserve(mfccs.size() * numCepstra * 3);
-    flat_mfccs.push_back(mfccs.size() * numCepstra * 3 );
-    for(const auto &v : mfccs) {
-        flat_mfccs.insert(flat_mfccs.end(), v.begin()+1, v.end()); // begin()+1 to get rid of first cepestrum(energy)
-    }
     
+    flat_mfccs.reserve(mfccs.size() * mfccs[0].size());
+    flat_mfccs.push_back((mfccs.size() * numCepstra * 3));
+    flat_mfccs.push_back((mfccs.size() * numCepstra * 3)); // size of flat_mfccs = first element is buggy so using second
+    for(const auto &v : mfccs) {
+        // begin()+1 to get rid of first cepestrum(energy)
+        flat_mfccs.insert(flat_mfccs.end(), v.begin()+1, v.end());
+    }
     return flat_mfccs.data();
 }
 

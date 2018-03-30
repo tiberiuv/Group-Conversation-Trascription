@@ -43,9 +43,7 @@ class asr_projectTests: XCTestCase {
         
         print(file_chad_train.format.description);
         
-//        vad_chad = test_vad(file: file_chad_train);
-//        vad_ross = test_vad(file: file_ross_train);
-//        vad_ross_test = test_vad(file: file_ross_test);
+        
         
         let buffer = AVAudioPCMBuffer(pcmFormat: file_chad_train.format, frameCapacity: UInt32(file_chad_train.file.length))
         let buffer1 = AVAudioPCMBuffer(pcmFormat: file_joey_train.format, frameCapacity: UInt32(file_joey_train.file.length))
@@ -54,9 +52,8 @@ class asr_projectTests: XCTestCase {
         let buffer4 = AVAudioPCMBuffer(pcmFormat: file_rachel_train.format, frameCapacity: UInt32(file_rachel_train.file.length))
         let buffer5 = AVAudioPCMBuffer(pcmFormat: file_ross_train.format, frameCapacity: UInt32(file_ross_train.file.length))
         let buffer6 = AVAudioPCMBuffer(pcmFormat: file_ross_test.format, frameCapacity: UInt32(file_ross_test.file.length))
+ 
         do {
-            try file_chad_train.file.read(into: buffer!)
-            chad_train = Process_helper.buffer_to_float(buffer: buffer!)
             try file_joey_train.file.read(into: buffer1!)
             joey_train = Process_helper.buffer_to_float(buffer: buffer1!)
             try file_monica_train.file.read(into: buffer2!)
@@ -65,10 +62,16 @@ class asr_projectTests: XCTestCase {
             phoebe_train = Process_helper.buffer_to_float(buffer: buffer3!)
             try file_rachel_train.file.read(into: buffer4!)
             rachel_train = Process_helper.buffer_to_float(buffer: buffer4!)
+            
+            try file_chad_train.file.read(into: buffer!)
+            chad_train = Process_helper.buffer_to_float(buffer: buffer!)
+            vad_chad = test_vad(buffer!);
             try file_ross_train.file.read(into: buffer5!)
             ross_train = Process_helper.buffer_to_float(buffer: buffer5!)
+            vad_ross = test_vad(buffer5!);
             try file_ross_test.file.read(into: buffer6!)
             ross_test = Process_helper.buffer_to_float(buffer: buffer6!)
+            vad_ross_test = test_vad(buffer6!);
         } catch {print(error)}
 //        8k_8PCM_eng 7127-75946-0002
     }
@@ -88,7 +91,7 @@ class asr_projectTests: XCTestCase {
             for i in 0...fft_buffer.count - 1  {
                 print("Freq \(Double(i) * (buffer?.format.sampleRate)! / Double(fft_buffer.count))")
             }
-            let index = Double(try fft.domin_freq(fft_buffer: fft_buffer))
+            let index = Double(try fft.domin_freq(fft_buffer))
             print("Dominant freq : \(index * (buffer?.format.sampleRate)! / Double(fft_buffer.count))")
         } catch {print(error)}
         
@@ -109,31 +112,19 @@ class asr_projectTests: XCTestCase {
         } catch {}
         
     }
-    func test_vad() {
-        let file = file_chad_train;
-        let buffer = AVAudioPCMBuffer(pcmFormat: file.format, frameCapacity: AVAudioFrameCount(file.file.length))
-        do {
-            try file.file.read(into: buffer!)
-        } catch {print(error)}
-        let detector = VAD(buffer: buffer!);
-        let samples = Process_helper.buffer_to_float(buffer: buffer!);
+    func test_vad(_ buffer: AVAudioPCMBuffer) -> [[Double]] {
+        let detector = VAD(buffer: buffer);
+        let samples = Process_helper.buffer_to_float(buffer: buffer);
         var mfccs = [[Double]]();
-        var times = [Double]();
-        detector.detect(speech: {(speech_time: Double) -> Void in
-            times.append(speech_time);
-            if(times.count > 1) {
-                let index1 = Int(times[0] * file.format.sampleRate / 10);
-                let index2 = Int(times[1] * file.format.sampleRate / 10);
-                let s_samples = [Float](samples[index1..<index2])
-//                let s_pointer = UnsafeMutablePointer(mutating: s_samples)
-                mfccs.append(contentsOf: extract_mfccs(s_samples));
-                print("Index 1: \(index1)");
-                print("Index 2: \(index2)");
-                times[0] = times.popLast()!;
+        var speech_samples = [Float]();
+        detector.detect(speech: {(index: Int) -> Void in
+            speech_samples.append(contentsOf: samples[index..<index+160]);
+            if(speech_samples.count >= 1200) {
+                mfccs.append(contentsOf: extract_mfccs(speech_samples))
+                speech_samples.removeAll()
             }
-//            mfcc.get_mfccs(pointer, and_size: Int32(speech_samples.count - 1))
-        });
-        //return mfccs
+        })
+        return mfccs
     }
     func extract_mfccs(_ samples: [Float]) -> [[Double]]{
         let pointer = UnsafeMutablePointer<Float>(mutating: samples)
@@ -141,7 +132,8 @@ class asr_projectTests: XCTestCase {
         let mfcc = mfcc_computer.get_mfccs(pointer, and_size: UInt32(samples.count))
         var mfcc_array = [[Double]]()
         var features = [Double]()
-        for i in 1...Int(mfcc![0]) {
+        let count = Int(mfcc![1]);
+        for i in 2..<count {
             
             features.append(mfcc![i])
             if(i % 36 == 0) {
@@ -229,13 +221,13 @@ class asr_projectTests: XCTestCase {
 
     }
     func test_ClassifierSVM(){
-        let mfcc_chad = extract_mfccs(chad_train);
-        let mfcc_joey = extract_mfccs(joey_train);
-        let mfcc_monica = extract_mfccs(monica_train);
-        let mfcc_phoebe = extract_mfccs(phoebe_train);
-        let mfcc_rachel = extract_mfccs(rachel_train);
-        let mfcc_ross = extract_mfccs(ross_train);
-        let mfcc_ross_test = extract_mfccs(ross_test);
+//        let mfcc_chad = extract_mfccs(chad_train);
+//        let mfcc_joey = extract_mfccs(joey_train);
+//        let mfcc_monica = extract_mfccs(monica_train);
+//        let mfcc_phoebe = extract_mfccs(phoebe_train);
+//        let mfcc_rachel = extract_mfccs(rachel_train);
+//        let mfcc_ross = extract_mfccs(ross_train);
+//        let mfcc_ross_test = extract_mfccs(ross_test);
 
         let train_data = DataSet(dataType: .classification, inputDimension: 36, outputDimension: 1);
         let test_data = DataSet(dataType: .classification, inputDimension: 36, outputDimension: 1);
@@ -243,19 +235,19 @@ class asr_projectTests: XCTestCase {
         let svm_kernel = KernelParameters(type: .radialBasisFunction, degree: 0 , gamma: 0.1, coef0: 64);
         let svm_ross = SVMModel(problemType: .c_SVM_Classification, kernelSettings: svm_kernel)
 //        let svm_imposter = SVMModel(problemType: .c_SVM_Classification, kernelSettings: svm_kernel)
-        let numFeatureSets =  800;
+        let numFeatureSets =  500;
         var normalised_train_data: DataSet = DataSet(dataType: .classification, inputDimension: 36, outputDimension: 1);
         do {
             for i in 0..<numFeatureSets {
-//                try train_data.addDataPoint(input: vad_chad[i], dataClass: 0)
-//                try train_data.addDataPoint(input: vad_ross[i], dataClass: 0)
-                try train_data.addDataPoint(input: mfcc_chad[i], dataClass: 0)
-                try train_data.addDataPoint(input: mfcc_joey[i], dataClass: 0)
-                try train_data.addDataPoint(input: mfcc_phoebe[i], dataClass: 0)
-                try train_data.addDataPoint(input: mfcc_monica[i], dataClass: 0)
-                
-                try train_data.addDataPoint(input: mfcc_rachel[i], dataClass: 1)
-                try train_data.addDataPoint(input: mfcc_ross[i], dataClass: 0)
+                try train_data.addDataPoint(input: vad_chad[i], dataClass: 0)
+                try train_data.addDataPoint(input: vad_ross[i], dataClass: 0)
+//                try train_data.addDataPoint(input: mfcc_chad[i], dataClass: 0)
+//                try train_data.addDataPoint(input: mfcc_joey[i], dataClass: 0)
+//                try train_data.addDataPoint(input: mfcc_phoebe[i], dataClass: 0)
+//                try train_data.addDataPoint(input: mfcc_monica[i], dataClass: 0)
+//
+//                try train_data.addDataPoint(input: mfcc_rachel[i], dataClass: 1)
+//                try train_data.addDataPoint(input: mfcc_ross[i], dataClass: 0)
             }
             normalised_train_data = normaliseData_mlpack(train: train_data);
 //            for i in 0..<mfcc_ross_test.count {
@@ -275,7 +267,7 @@ class asr_projectTests: XCTestCase {
 //        } catch {print("Error in classifing the data")}
         do {
             var accuracy = 0.0;
-            var test_mfcc = mfcc_ross_test
+            guard let test_mfcc = vad_ross_test else { return }
             for i in 0..<test_mfcc.count {
                 var normal_vector = test_mfcc[i];
                 for k in 0..<test_mfcc[i].count {
@@ -370,14 +362,14 @@ class asr_projectTests: XCTestCase {
         self.std_dev = std_dev
         return norm_data
     }
-    func testmlpack() {
-        let mlpack = MLPackWrapper();
-//        let ml_pack = wrapper();
-        let mfcc_rachel = extract_mfccs(rachel_train)
-        let mfcc_rachel_flat =  mfcc_rachel.reduce([], +);
-        let pointer = UnsafeMutablePointer<Double>(mutating: mfcc_rachel_flat);
-        mlpack.build_classifier(pointer, and_size: UInt32(mfcc_rachel_flat.count));
-    }
+//    func testmlpack() {
+//        let mlpack = MLPackWrapper();
+////        let ml_pack = wrapper();
+//        let mfcc_rachel = extract_mfccs(rachel_train)
+//        let mfcc_rachel_flat =  mfcc_rachel.reduce([], +);
+//        let pointer = UnsafeMutablePointer<Double>(mutating: mfcc_rachel_flat);
+//        mlpack.build_classifier(pointer, and_size: UInt32(mfcc_rachel_flat.count));
+//    }
 
 func testPerformanceExample() {
         // This is an example of a performance test case.

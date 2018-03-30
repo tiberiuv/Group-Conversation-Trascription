@@ -10,7 +10,7 @@ import UIKit
 import Speech
 
 class FirstViewController: UIViewController {
-    var isRecordingPermissionGranted = false;
+    var isRecordingPermissionGranted = false
     @IBOutlet weak var file_select_lable: UILabel!
     @IBOutlet weak var file_path_text_box: UITextField!
     
@@ -49,18 +49,18 @@ class FirstViewController: UIViewController {
     func checkRecordingPermission() {
         switch AVAudioSession.sharedInstance().recordPermission() {
         case AVAudioSessionRecordPermission.granted:
-            isRecordingPermissionGranted = true;
+            isRecordingPermissionGranted = true
             break
         case AVAudioSessionRecordPermission.denied:
-            isRecordingPermissionGranted = false;
+            isRecordingPermissionGranted = false
         case AVAudioSessionRecordPermission.undetermined:
             AVAudioSession.sharedInstance().requestRecordPermission() {
                 [unowned self] allowed in DispatchQueue.main.sync {
                     if allowed {
-                        self.isRecordingPermissionGranted = true;
+                        self.isRecordingPermissionGranted = true
                     }
                     else {
-                        self.isRecordingPermissionGranted = false;
+                        self.isRecordingPermissionGranted = false
                     }
                 }
             }
