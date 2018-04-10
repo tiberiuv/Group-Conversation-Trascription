@@ -9,26 +9,28 @@
 import AVFoundation
 import Accelerate
 
-class Fft_transformer {
+class FFTComputer {
+    var fftSetup: FFTSetup?
+    var log2n: UInt
+    init(_ frameCount: Int) {
+        self.log2n = UInt(round(log2(Double(frameCount))))
+        fftSetup = vDSP_create_fftsetup(log2n, Int32(kFFTRadix2))
+    }
     func transform(samples: [Float]) throws -> Buffer {
         let frameCount = samples.count
         let log2n = UInt(round(log2(Double(frameCount))))
         let bufferSizePOT = Int(1 << log2n)
         let inputCount = bufferSizePOT / 2
-        let fftSetup = vDSP_create_fftsetup(log2n, Int32(kFFTRadix2))
+        if(log2n > self.log2n){
+            self.fftSetup = vDSP_create_fftsetup(log2n, Int32(kFFTRadix2))
+        }
         
         var realp = [Float](repeating: 0, count: inputCount)
         var imagp = [Float](repeating: 0, count: inputCount)
         var output = DSPSplitComplex(realp: &realp, imagp: &imagp)
-        
-        let windowSize = bufferSizePOT
-        var transferBuffer = [Float](repeating: 0, count: windowSize)
-        var window = [Float](repeating: 0, count: windowSize)
-        let pointer_samples = UnsafePointer<Float>(samples)
-        vDSP_hann_window(&window, vDSP_Length(windowSize), Int32(vDSP_HANN_NORM))
-        vDSP_vmul(pointer_samples, 1, window,
-                  1, &transferBuffer, 1, vDSP_Length(windowSize))
-        
+        // No windowing uncomment to apply HANN windowing
+
+        let transferBuffer = [Float](samples)
         let temp = UnsafePointer<Float>(transferBuffer)
         
         temp.withMemoryRebound(to: DSPComplex.self, capacity: transferBuffer.count) { (typeConvertedTransferBuffer) -> Void in
@@ -36,7 +38,7 @@ class Fft_transformer {
         }
         
         vDSP_fft_zrip(fftSetup!, &output, 1, log2n, FFTDirection(FFT_FORWARD))
-        
+
         var magnitudes = [Float](repeating: 0.0, count: inputCount)
         vDSP_zvmags(&output, 1, &magnitudes, 1, vDSP_Length(inputCount))
         
@@ -46,7 +48,7 @@ class Fft_transformer {
         
         let buffer = Buffer(elements: normalizedMagnitudes)
         
-        vDSP_destroy_fftsetup(fftSetup)
+        //vDSP_destroy_fftsetup(fftSetup)
         
         return buffer
     }
@@ -63,7 +65,7 @@ class Fft_transformer {
         return index;
     }
     func getPowerSpectrum(_ fft_buffer: Buffer) -> [Float] {
-        return fft_buffer.elements.map {value in abs(pow(value,2))};
+        return fft_buffer.elements.map {value in pow(abs(value),2)};
         
     }
     func getSpectralFlatness(_ fft_buffer: Buffer) -> Double {
@@ -81,6 +83,11 @@ class Fft_transformer {
         return gmMean / arMean;
     }
     // MARK: - Helpers
+    func destroySetup(){
+        if self.fftSetup != nil{
+            vDSP_destroy_fftsetup(self.fftSetup)
+        }
+    }
     func sqrtq(_ x: [Float]) -> [Float] {
         var results = [Float](repeating: 0.0, count: x.count)
         vvsqrtf(&results, x, [Int32(x.count)])
