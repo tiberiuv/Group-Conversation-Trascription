@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "Fft_transformer.getPowerSpectrum(_:):Fft_transformer.swift">
+      </ContextState>
+      <ContextState
+         contextName = "MFCC::process_floats(float*, unsigned int):mfcc.cc">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>
