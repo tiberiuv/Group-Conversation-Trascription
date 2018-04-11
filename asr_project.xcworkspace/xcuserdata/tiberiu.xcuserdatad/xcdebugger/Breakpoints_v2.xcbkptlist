@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Mfcc/mfcc_wrapper.mm"
-            timestampString = "545128706.130362"
+            filePath = "asr_project/Helpers/Fft_transformer.swift"
+            timestampString = "544781984.463053"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
-            landmarkName = "-get_mfccs:and_size:"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "transform(samples:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "asr_project/Helpers/Fft_transformer.swift"
-            timestampString = "544781984.463053"
+            filePath = "asr_project/Helpers/MFCCComputer.swift"
+            timestampString = "545130420.740492"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "transform(samples:)"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "apply_dct()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Mfcc/mfcc.cc"
+            timestampString = "545130420.7411799"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "317"
+            endingLineNumber = "317"
+            landmarkName = "processFrame(float* samples, size_t N)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

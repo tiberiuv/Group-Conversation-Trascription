@@ -146,6 +146,7 @@ class MFCCComputer {
                  mfcc[i] += dct[i][j] * LMFBCoef[j]
             }
         }
+        
         return mfcc
     }
     

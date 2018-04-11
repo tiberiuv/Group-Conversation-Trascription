@@ -86,7 +86,7 @@ class asr_projectTests: XCTestCase {
         do {
             try file.file.read(into: buffer!, frameCount: 512);
             let fft = FFTComputer(512);
-            let fft_buffer = try fft.transform(samples: Process_helper.buffer2float(buffer: buffer!));
+            let fft_buffer = try fft.transform(input: Process_helper.buffer2float(buffer: buffer!));
             fft_buffer.elements.forEach({element in print(element)});
             for i in 0...fft_buffer.count - 1  {
                 print("Freq \(Double(i) * (buffer?.format.sampleRate)! / Double(fft_buffer.count))")
@@ -145,7 +145,7 @@ class asr_projectTests: XCTestCase {
     }
     
     func test_mfcc(){
-        let samples = joey_train;
+        let samples = chad_train;
         let pointer = UnsafeMutablePointer<Float>(mutating: samples)
         let mfcc_computer =  mfcc_wrapper()
         let mfcc = mfcc_computer.get_mfccs(pointer, and_size: UInt32(samples!.count))
@@ -154,10 +154,17 @@ class asr_projectTests: XCTestCase {
         for i in 1...Int(mfcc![0]) {
             
             features.append(mfcc![i])
-            if(i % 12 == 0) {
+            if(i % 36 == 0) {
                 mfcc_array.append(features)
                 features.removeAll()
             }
+        }
+    }
+    func test_myMFCC() {
+        if let testSamples = chad_train {
+            let mfccComputer = MFCCComputer()
+            
+            let features = mfccComputer.process(samples: testSamples)
         }
     }
 //    func apply_vad(buffer: AVAudioPCMBuffer) {

@@ -60,7 +60,7 @@ class VAD {
             samples = Array(UnsafeBufferPointer(start: pcm_buffer.floatChannelData?[0].advanced(by: i*num_samples), count:num_samples)); // 1 frame worth of
             let energy = Process_helper.calculate_rms(audio_frame: samples); // energy of 1 frame
             do {
-                let fft_buffer = try fft.transform(samples: samples)
+                let fft_buffer = try fft.transform(input: samples)
                 freq = try Double(fft.domin_freq(fft_buffer)) * ((pcm_buffer.format.sampleRate)/2) / Double(fft_buffer.count)
                 sfm = fft.getSpectralFlatness(fft_buffer)
             } catch {print("error in calcualting fft: \(error)")}
