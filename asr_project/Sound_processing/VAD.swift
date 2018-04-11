@@ -50,7 +50,7 @@ class VAD {
         var min_f: Double = 1000
         var min_sfm: Double = 1000
         var samples: [Float]
-        let fft = Fft_transformer()
+        let fft = FFTComputer(no_frames)
         var freq = 0.0
         var speech_c = 0
         var silence_c:Double = 0

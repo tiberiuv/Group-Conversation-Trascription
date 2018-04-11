@@ -1,12 +1,18 @@
 PODS:
-  - GoogleWebRTC (1.1.20266)
+  - Beethoven (4.0.2):
+    - Pitchy (~> 3.0)
+  - OpenCV (3.3.1)
+  - Pitchy (3.0.0)
 
 DEPENDENCIES:
-  - GoogleWebRTC
+  - Beethoven
+  - OpenCV
 
 SPEC CHECKSUMS:
-  GoogleWebRTC: 2aca9ba329a68e466293b46ff1e9229de5bf42b4
+  Beethoven: e517331e5087064e1c1fd3d3775fddb8d9f3017d
+  OpenCV: d81447860f038d60723084aa02ecc963f95c55fa
+  Pitchy: 15407e4425b6d88fa3e7eef8927ba659fab52d7a
 
-PODFILE CHECKSUM: 1b4aef6d6887d950d4caa6823cbaa2b04fa54bfd
+PODFILE CHECKSUM: ba8c0d72341b4861d56886eb9ab24e9653975413
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.4.0

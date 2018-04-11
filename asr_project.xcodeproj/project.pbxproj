@@ -22,17 +22,19 @@
 		10567FAE1FC312A600BE1282 /* Process_helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10567FAD1FC312A600BE1282 /* Process_helper.swift */; };
 		10567FB01FC3137600BE1282 /* Audio_frame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10567FAF1FC3137600BE1282 /* Audio_frame.swift */; };
 		10567FB21FC3176300BE1282 /* Audio_file.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10567FB11FC3176300BE1282 /* Audio_file.swift */; };
-		10577D0F204E0BB500E444DE /* AIToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1081A6D62043440C0086FB8C /* AIToolbox.framework */; };
-		10577D10204E0BB500E444DE /* AIToolbox.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1081A6D62043440C0086FB8C /* AIToolbox.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		10903B7A1FC5E271008F04E6 /* Speech_turn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10903B791FC5E271008F04E6 /* Speech_turn.swift */; };
 		10903B7C1FC5E2A8008F04E6 /* Audio_segment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10903B7B1FC5E2A8008F04E6 /* Audio_segment.swift */; };
 		1098EF3220543B120003B896 /* data_friends in Resources */ = {isa = PBXBuildFile; fileRef = 1098EF3120543B110003B896 /* data_friends */; };
 		10A73B711FC6F27300F26885 /* S_recognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A73B701FC6F27300F26885 /* S_recognizer.swift */; };
 		10A9E8A32031C8FA00897B3D /* KNNDTW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A9E8A22031C8FA00897B3D /* KNNDTW.swift */; };
+		10AB7623207DF48F0063B073 /* MFCCComputer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10AB7622207DF48F0063B073 /* MFCCComputer.swift */; };
+		10AB7625207DFB650063B073 /* FFTComputer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10AB7624207DFB650063B073 /* FFTComputer.swift */; };
 		10B07E9E1FCF058D009A40B0 /* AcousticModelEnglish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 10B07E9B1FCF058D009A40B0 /* AcousticModelEnglish.bundle */; };
 		10B4DB20206CCF87000EEA24 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 10B4DB1F206CCF87000EEA24 /* .gitignore */; };
-		10BE5F6C201CAC5F006D5AAD /* Fft_transformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BE5F6B201CAC5F006D5AAD /* Fft_transformer.swift */; };
 		10BE5F6E201CACF4006D5AAD /* Complex_buffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10BE5F6D201CACF4006D5AAD /* Complex_buffer.swift */; };
+		15BB4309E4A70C81BA9A9022 /* Pods_asr_project.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA31CCF2B7896E0E9D722ACD /* Pods_asr_project.framework */; };
+		7B25FE20AE68FCB09DE11216 /* Pods_asr_projectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E9674775C82D3E197D227E6 /* Pods_asr_projectTests.framework */; };
+		B37D08CF7035E969628289E6 /* Pods_asr_projectUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5767DDC16F8E8D2EDA3BF63F /* Pods_asr_projectUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,54 +52,47 @@
 			remoteGlobalIDString = 10567F741FC30FD200BE1282;
 			remoteInfo = asr_project;
 		};
-		10577D11204E0BB500E444DE /* PBXContainerItemProxy */ = {
+		10AB762E207DFC500063B073 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 1081A6C92043440B0086FB8C /* AIToolbox.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 0E0A4F921C133E8800AD5AAE;
-			remoteInfo = AIToolboxIOS;
-		};
-		106960F9204C499500F3DE40 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 106960F5204C499500F3DE40 /* mlpack-ios.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 79C8F33A1902355200064E3E;
-			remoteInfo = "mlpack-ios";
-		};
-		1081A6D12043440C0086FB8C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 1081A6C92043440B0086FB8C /* AIToolbox.xcodeproj */;
+			containerPortal = 10AB7626207DFC4F0063B073 /* AIToolbox.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 0EBA29AB1A91350C0012CEC9;
 			remoteInfo = AIToolbox;
 		};
-		1081A6D32043440C0086FB8C /* PBXContainerItemProxy */ = {
+		10AB7630207DFC500063B073 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 1081A6C92043440B0086FB8C /* AIToolbox.xcodeproj */;
+			containerPortal = 10AB7626207DFC4F0063B073 /* AIToolbox.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 0EBA29B61A91350C0012CEC9;
 			remoteInfo = AIToolboxTests;
 		};
-		1081A6D52043440C0086FB8C /* PBXContainerItemProxy */ = {
+		10AB7632207DFC500063B073 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 1081A6C92043440B0086FB8C /* AIToolbox.xcodeproj */;
+			containerPortal = 10AB7626207DFC4F0063B073 /* AIToolbox.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 0E0A4F931C133E8800AD5AAE;
 			remoteInfo = AIToolboxIOS;
 		};
-		1081A6D72043440C0086FB8C /* PBXContainerItemProxy */ = {
+		10AB7634207DFC500063B073 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 1081A6C92043440B0086FB8C /* AIToolbox.xcodeproj */;
+			containerPortal = 10AB7626207DFC4F0063B073 /* AIToolbox.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 0E0A4F9C1C133E8800AD5AAE;
 			remoteInfo = AIToolboxIOSTests;
 		};
-		1081A6D92043440C0086FB8C /* PBXContainerItemProxy */ = {
+		10AB7636207DFC500063B073 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 1081A6C92043440B0086FB8C /* AIToolbox.xcodeproj */;
+			containerPortal = 10AB7626207DFC4F0063B073 /* AIToolbox.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = FB0D5A231CAF09230097590B;
 			remoteInfo = "AIToolbox copy";
+		};
+		10AB7638207DFC5B0063B073 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 10AB7626207DFC4F0063B073 /* AIToolbox.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0E0A4F921C133E8800AD5AAE;
+			remoteInfo = AIToolboxIOS;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -108,7 +103,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				10577D10204E0BB500E444DE /* AIToolbox.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -129,7 +123,6 @@
 		04A16EA63FDCDF1C20A6EB7F /* Pods-asr_project.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-asr_project.release.xcconfig"; path = "Pods/Target Support Files/Pods-asr_project/Pods-asr_project.release.xcconfig"; sourceTree = "<group>"; };
 		10070E4A1FD3049F0077FAEF /* VAD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VAD.swift; sourceTree = "<group>"; };
 		1035924120307C9200B84721 /* mfcc_mine.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mfcc_mine.cc; sourceTree = "<group>"; };
-		103A1A8E201E250E005845B0 /* MFCC_Computer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MFCC_Computer.swift; sourceTree = "<group>"; };
 		1053B6E21FD999F7002C1C92 /* mfcc.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = mfcc.cc; sourceTree = "<group>"; };
 		1053B6E31FD999F7002C1C92 /* wavHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wavHeader.h; sourceTree = "<group>"; };
 		1053B6E41FD999F8002C1C92 /* compute-mfcc.cc */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = "compute-mfcc.cc"; sourceTree = "<group>"; };
@@ -152,13 +145,14 @@
 		10567FAD1FC312A600BE1282 /* Process_helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Process_helper.swift; sourceTree = "<group>"; };
 		10567FAF1FC3137600BE1282 /* Audio_frame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio_frame.swift; sourceTree = "<group>"; };
 		10567FB11FC3176300BE1282 /* Audio_file.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio_file.swift; sourceTree = "<group>"; };
-		106960F5204C499500F3DE40 /* mlpack-ios.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "mlpack-ios.xcodeproj"; path = "../../Downloads/mlpack-ios-master/mlpack-ios/mlpack-ios.xcodeproj"; sourceTree = "<group>"; };
-		1081A6C92043440B0086FB8C /* AIToolbox.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AIToolbox.xcodeproj; path = ../../Downloads/AIToolbox/AIToolbox.xcodeproj; sourceTree = "<group>"; };
 		10903B791FC5E271008F04E6 /* Speech_turn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Speech_turn.swift; sourceTree = "<group>"; };
 		10903B7B1FC5E2A8008F04E6 /* Audio_segment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio_segment.swift; sourceTree = "<group>"; };
 		1098EF3120543B110003B896 /* data_friends */ = {isa = PBXFileReference; lastKnownFileType = folder; path = data_friends; sourceTree = "<group>"; };
 		10A73B701FC6F27300F26885 /* S_recognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = S_recognizer.swift; sourceTree = "<group>"; };
 		10A9E8A22031C8FA00897B3D /* KNNDTW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KNNDTW.swift; sourceTree = "<group>"; };
+		10AB7622207DF48F0063B073 /* MFCCComputer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MFCCComputer.swift; sourceTree = "<group>"; };
+		10AB7624207DFB650063B073 /* FFTComputer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFTComputer.swift; sourceTree = "<group>"; };
+		10AB7626207DFC4F0063B073 /* AIToolbox.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AIToolbox.xcodeproj; path = ../FinalProjectFiles/AIToolbox/AIToolbox.xcodeproj; sourceTree = "<group>"; };
 		10B07E991FCF058D009A40B0 /* Slt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Slt.framework; sourceTree = "<group>"; };
 		10B07E9A1FCF058D009A40B0 /* OpenEars.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenEars.framework; sourceTree = "<group>"; };
 		10B07E9B1FCF058D009A40B0 /* AcousticModelEnglish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AcousticModelEnglish.bundle; sourceTree = "<group>"; };
@@ -166,11 +160,13 @@
 		10B4DB1F206CCF87000EEA24 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		10BE2D1A2045A8CB0020CC71 /* MLPackWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MLPackWrapper.mm; sourceTree = "<group>"; };
 		10BE2D212045A91C0020CC71 /* MLPackWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MLPackWrapper.h; sourceTree = "<group>"; };
-		10BE5F6B201CAC5F006D5AAD /* Fft_transformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fft_transformer.swift; sourceTree = "<group>"; };
 		10BE5F6D201CACF4006D5AAD /* Complex_buffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Complex_buffer.swift; sourceTree = "<group>"; };
+		5767DDC16F8E8D2EDA3BF63F /* Pods_asr_projectUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_asr_projectUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		674EF760FCF37297599FB9DC /* Pods-asr_projectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-asr_projectTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-asr_projectTests/Pods-asr_projectTests.release.xcconfig"; sourceTree = "<group>"; };
+		8E9674775C82D3E197D227E6 /* Pods_asr_projectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_asr_projectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D78291F6877D77E6FD630997 /* Pods-asr_project.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-asr_project.debug.xcconfig"; path = "Pods/Target Support Files/Pods-asr_project/Pods-asr_project.debug.xcconfig"; sourceTree = "<group>"; };
 		DCA0DB9823FA98BB38D4A759 /* Pods-asr_projectUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-asr_projectUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-asr_projectUITests/Pods-asr_projectUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		EA31CCF2B7896E0E9D722ACD /* Pods_asr_project.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_asr_project.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F39A5D87FE8F4E9B788504DD /* Pods-asr_projectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-asr_projectTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-asr_projectTests/Pods-asr_projectTests.debug.xcconfig"; sourceTree = "<group>"; };
 		F9D397C8A957FE939E927709 /* Pods-asr_projectUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-asr_projectUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-asr_projectUITests/Pods-asr_projectUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -180,7 +176,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				10577D0F204E0BB500E444DE /* AIToolbox.framework in Frameworks */,
+				15BB4309E4A70C81BA9A9022 /* Pods_asr_project.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,6 +184,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7B25FE20AE68FCB09DE11216 /* Pods_asr_projectTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,6 +192,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B37D08CF7035E969628289E6 /* Pods_asr_projectUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -217,9 +215,8 @@
 		10567F6C1FC30FD200BE1282 = {
 			isa = PBXGroup;
 			children = (
+				10AB7626207DFC4F0063B073 /* AIToolbox.xcodeproj */,
 				10B4DB1F206CCF87000EEA24 /* .gitignore */,
-				106960F5204C499500F3DE40 /* mlpack-ios.xcodeproj */,
-				1081A6C92043440B0086FB8C /* AIToolbox.xcodeproj */,
 				10B0807D1FCF12F5009A40B0 /* bridging_header.h */,
 				1098EF3120543B110003B896 /* data_friends */,
 				1053B6E11FD999D1002C1C92 /* Mfcc */,
@@ -289,12 +286,12 @@
 		10567FAA1FC311C300BE1282 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				10AB7624207DFB650063B073 /* FFTComputer.swift */,
+				10AB7622207DF48F0063B073 /* MFCCComputer.swift */,
 				10567FAD1FC312A600BE1282 /* Process_helper.swift */,
 				10A73B701FC6F27300F26885 /* S_recognizer.swift */,
 				10567FB11FC3176300BE1282 /* Audio_file.swift */,
-				10BE5F6B201CAC5F006D5AAD /* Fft_transformer.swift */,
 				10BE5F6D201CACF4006D5AAD /* Complex_buffer.swift */,
-				103A1A8E201E250E005845B0 /* MFCC_Computer.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -320,22 +317,14 @@
 			path = Classifiers;
 			sourceTree = "<group>";
 		};
-		106960F6204C499500F3DE40 /* Products */ = {
+		10AB7627207DFC4F0063B073 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				106960FA204C499500F3DE40 /* libmlpack-ios.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		1081A6CA2043440B0086FB8C /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				1081A6D22043440C0086FB8C /* AIToolbox.framework */,
-				1081A6D42043440C0086FB8C /* AIToolboxTests.xctest */,
-				1081A6D62043440C0086FB8C /* AIToolbox.framework */,
-				1081A6D82043440C0086FB8C /* AIToolboxIOSTests.xctest */,
-				1081A6DA2043440C0086FB8C /* AIToolbox copy.framework */,
+				10AB762F207DFC500063B073 /* AIToolbox.framework */,
+				10AB7631207DFC500063B073 /* AIToolboxTests.xctest */,
+				10AB7633207DFC500063B073 /* AIToolbox.framework */,
+				10AB7635207DFC500063B073 /* AIToolboxIOSTests.xctest */,
+				10AB7637207DFC500063B073 /* AIToolbox copy.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -343,6 +332,9 @@
 		10B07E951FCF04A9009A40B0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				EA31CCF2B7896E0E9D722ACD /* Pods_asr_project.framework */,
+				8E9674775C82D3E197D227E6 /* Pods_asr_projectTests.framework */,
+				5767DDC16F8E8D2EDA3BF63F /* Pods_asr_projectUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -389,7 +381,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				10577D12204E0BB500E444DE /* PBXTargetDependency */,
+				10AB7639207DFC5B0063B073 /* PBXTargetDependency */,
 			);
 			name = asr_project;
 			productName = asr_project;
@@ -480,12 +472,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 1081A6CA2043440B0086FB8C /* Products */;
-					ProjectRef = 1081A6C92043440B0086FB8C /* AIToolbox.xcodeproj */;
-				},
-				{
-					ProductGroup = 106960F6204C499500F3DE40 /* Products */;
-					ProjectRef = 106960F5204C499500F3DE40 /* mlpack-ios.xcodeproj */;
+					ProductGroup = 10AB7627207DFC4F0063B073 /* Products */;
+					ProjectRef = 10AB7626207DFC4F0063B073 /* AIToolbox.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -498,46 +486,39 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		106960FA204C499500F3DE40 /* libmlpack-ios.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libmlpack-ios.a";
-			remoteRef = 106960F9204C499500F3DE40 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		1081A6D22043440C0086FB8C /* AIToolbox.framework */ = {
+		10AB762F207DFC500063B073 /* AIToolbox.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = AIToolbox.framework;
-			remoteRef = 1081A6D12043440C0086FB8C /* PBXContainerItemProxy */;
+			remoteRef = 10AB762E207DFC500063B073 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		1081A6D42043440C0086FB8C /* AIToolboxTests.xctest */ = {
+		10AB7631207DFC500063B073 /* AIToolboxTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = AIToolboxTests.xctest;
-			remoteRef = 1081A6D32043440C0086FB8C /* PBXContainerItemProxy */;
+			remoteRef = 10AB7630207DFC500063B073 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		1081A6D62043440C0086FB8C /* AIToolbox.framework */ = {
+		10AB7633207DFC500063B073 /* AIToolbox.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = AIToolbox.framework;
-			remoteRef = 1081A6D52043440C0086FB8C /* PBXContainerItemProxy */;
+			remoteRef = 10AB7632207DFC500063B073 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		1081A6D82043440C0086FB8C /* AIToolboxIOSTests.xctest */ = {
+		10AB7635207DFC500063B073 /* AIToolboxIOSTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = AIToolboxIOSTests.xctest;
-			remoteRef = 1081A6D72043440C0086FB8C /* PBXContainerItemProxy */;
+			remoteRef = 10AB7634207DFC500063B073 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		1081A6DA2043440C0086FB8C /* AIToolbox copy.framework */ = {
+		10AB7637207DFC500063B073 /* AIToolbox copy.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = "AIToolbox copy.framework";
-			remoteRef = 1081A6D92043440C0086FB8C /* PBXContainerItemProxy */;
+			remoteRef = 10AB7636207DFC500063B073 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -709,11 +690,15 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-asr_project/Pods-asr_project-frameworks.sh",
-				"${PODS_ROOT}/GoogleWebRTC/Frameworks/frameworks/WebRTC.framework",
+				"${BUILT_PRODUCTS_DIR}/Beethoven/Beethoven.framework",
+				"${BUILT_PRODUCTS_DIR}/OpenCV/opencv2.framework",
+				"${BUILT_PRODUCTS_DIR}/Pitchy/Pitchy.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebRTC.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Beethoven.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/opencv2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Pitchy.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -734,8 +719,9 @@
 				10A73B711FC6F27300F26885 /* S_recognizer.swift in Sources */,
 				10903B7C1FC5E2A8008F04E6 /* Audio_segment.swift in Sources */,
 				10567FB01FC3137600BE1282 /* Audio_frame.swift in Sources */,
+				10AB7623207DF48F0063B073 /* MFCCComputer.swift in Sources */,
 				10070E4B1FD3049F0077FAEF /* VAD.swift in Sources */,
-				10BE5F6C201CAC5F006D5AAD /* Fft_transformer.swift in Sources */,
+				10AB7625207DFB650063B073 /* FFTComputer.swift in Sources */,
 				10903B7A1FC5E271008F04E6 /* Speech_turn.swift in Sources */,
 				1053B6E61FD999FA002C1C92 /* compute-mfcc.cc in Sources */,
 				10567F791FC30FD200BE1282 /* AppDelegate.swift in Sources */,
@@ -775,10 +761,10 @@
 			target = 10567F741FC30FD200BE1282 /* asr_project */;
 			targetProxy = 10567F971FC30FD300BE1282 /* PBXContainerItemProxy */;
 		};
-		10577D12204E0BB500E444DE /* PBXTargetDependency */ = {
+		10AB7639207DFC5B0063B073 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = AIToolboxIOS;
-			targetProxy = 10577D11204E0BB500E444DE /* PBXContainerItemProxy */;
+			targetProxy = 10AB7638207DFC5B0063B073 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -934,6 +920,7 @@
 					"/Users/tiberiu/Downloads/mlpack-ios-master/mlpack-ios",
 				);
 				INFOPLIST_FILE = asr_project/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib,
@@ -973,6 +960,7 @@
 					"/Users/tiberiu/Downloads/mlpack-ios-master/mlpack-ios",
 				);
 				INFOPLIST_FILE = asr_project/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib,

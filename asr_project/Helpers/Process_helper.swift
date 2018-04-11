@@ -70,10 +70,10 @@ class Process_helper {
 //            return false
 //        }
 //    }
-    static func buffer_to_float(buffer: AVAudioPCMBuffer) -> [Float] {
+    static func buffer2float(buffer: AVAudioPCMBuffer) -> [Float] {
         return Array(UnsafeBufferPointer(start: buffer.floatChannelData?[0], count:Int(buffer.frameLength)))
     }
-    static func float_to_buffer(samples :[Float], audio_format: AVAudioFormat) -> AVAudioPCMBuffer{
+    static func float2buffer(samples :[Float], audio_format: AVAudioFormat) -> AVAudioPCMBuffer{
         let buffer = AVAudioPCMBuffer(pcmFormat: audio_format, frameCapacity: AVAudioFrameCount(samples.count))
         let pointer = UnsafePointer(samples)
         

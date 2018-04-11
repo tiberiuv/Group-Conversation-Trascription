@@ -55,23 +55,23 @@ class asr_projectTests: XCTestCase {
  
         do {
             try file_joey_train.file.read(into: buffer1!)
-            joey_train = Process_helper.buffer_to_float(buffer: buffer1!)
+            joey_train = Process_helper.buffer2float(buffer: buffer1!)
             try file_monica_train.file.read(into: buffer2!)
-            monica_train = Process_helper.buffer_to_float(buffer: buffer2!)
+            monica_train = Process_helper.buffer2float(buffer: buffer2!)
             try file_phoebe_train.file.read(into: buffer3!)
-            phoebe_train = Process_helper.buffer_to_float(buffer: buffer3!)
+            phoebe_train = Process_helper.buffer2float(buffer: buffer3!)
             try file_rachel_train.file.read(into: buffer4!)
-            rachel_train = Process_helper.buffer_to_float(buffer: buffer4!)
+            rachel_train = Process_helper.buffer2float(buffer: buffer4!)
             
             try file_chad_train.file.read(into: buffer!)
-            chad_train = Process_helper.buffer_to_float(buffer: buffer!)
-            vad_chad = test_vad(buffer!);
+            chad_train = Process_helper.buffer2float(buffer: buffer!)
+            //vad_chad = test_vad(buffer!);
             try file_ross_train.file.read(into: buffer5!)
-            ross_train = Process_helper.buffer_to_float(buffer: buffer5!)
-            vad_ross = test_vad(buffer5!);
+            ross_train = Process_helper.buffer2float(buffer: buffer5!)
+            //vad_ross = test_vad(buffer5!);
             try file_ross_test.file.read(into: buffer6!)
-            ross_test = Process_helper.buffer_to_float(buffer: buffer6!)
-            vad_ross_test = test_vad(buffer6!);
+            ross_test = Process_helper.buffer2float(buffer: buffer6!)
+            //vad_ross_test = test_vad(buffer6!);
         } catch {print(error)}
 //        8k_8PCM_eng 7127-75946-0002
     }
