@@ -33,16 +33,18 @@ class MFCCComputer {
     var dctSetup: vDSP_DFT_Setup?
     var filterBank = [[Double]]()
     var addDeltas: Bool
+    var lifterN: Int
     // MARK: - Destroy fft setup after usage destroy
     // TODO: - check
     // FIXME: - Some bug
-    init(sa_freq: Double = 16000, n_cep: Int = 12,win_len: Int = 25, frame_sft: Int = 10, n_filt: Int = 26, low_f: Double = 0.0, high_f: Double = 16000/2, compDeltas:Bool = true) {
+    init(sa_freq: Double = 16000, n_cep: Int = 12,win_len: Int = 25, frame_sft: Int = 10, n_filt: Int = 26, low_f: Double = 0.0, high_f: Double = 16000/2, compDeltas:Bool = true, numLifters: Int = 22) {
         saFreq = sa_freq
         numCepestra = n_cep
         winLength = win_len
         frameShift = frame_sft
         numFilters = n_filt
         lowFreq = low_f
+        lifterN = numLifters
         if(high_f <= saFreq / 2){
             highFreq = high_f
         } else {
@@ -71,7 +73,10 @@ class MFCCComputer {
         preemph_ham()
         comp_power_spectrum()
         apply_lmfb()
-        var mfcc = [Double](apply_dct()[1..<numCepestra]) // leave out first coeficient as its jsut sum of log energys
+        var mfcc = [Double](apply_dct()[1..<numCepestra]) // leave out first coeficient as its just sum of log energys
+        if lifterN > 1 {
+            mfcc = lifter(features: mfcc, lifterN)
+        }
         let velocity = computeDeltaN(mfcc)
         let accel = computeDeltaN(velocity)
         mfcc.append(contentsOf: velocity)
@@ -235,7 +240,15 @@ class MFCCComputer {
         }
         return deltas
     }
-
+    // Sinusoidal lifeter
+    func lifter(features: [Double], _ N: Int) -> [Double] {
+        var liftedFeats = features
+        let D = Double(N)
+        for i in 0..<features.count {
+            liftedFeats[i] *= 1.0 + D/2 * sin(Double.pi * Double(i) / D)
+        }
+        return liftedFeats
+    }
 //Helpers
     func destroySetups() {
         vDSP_DFT_DestroySetup(self.dctSetup)
