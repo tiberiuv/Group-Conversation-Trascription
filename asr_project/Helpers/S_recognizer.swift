@@ -56,7 +56,7 @@ class S_recognizer {
 //        for flot in frame{
 //            print(flot)
 //        }
-        let buffer = Process_helper.float_to_buffer(samples: frames, audio_format: audio_format!)
+        let buffer = Process_helper.float2buffer(samples: frames, audio_format: audio_format!)
         
         guard let my_recognizer = SFSpeechRecognizer() else { return  }
         if !(my_recognizer.isAvailable) { return }

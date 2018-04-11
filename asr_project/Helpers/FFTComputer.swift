@@ -16,7 +16,8 @@ class FFTComputer {
         self.log2n = UInt(round(log2(Double(frameCount))))
         fftSetup = vDSP_create_fftsetup(log2n, Int32(kFFTRadix2))
     }
-    func transform(samples: [Float]) throws -> Buffer {
+    func transform(input: [Float]) throws -> Buffer {
+        var samples = input
         let frameCount = samples.count
         let log2n = UInt(round(log2(Double(frameCount))))
         let bufferSizePOT = Int(1 << log2n)
@@ -24,11 +25,12 @@ class FFTComputer {
         if(log2n > self.log2n){
             self.fftSetup = vDSP_create_fftsetup(log2n, Int32(kFFTRadix2))
         }
-        
+        while samples.count < bufferSizePOT {
+            samples.append(0.0)
+        }
         var realp = [Float](repeating: 0, count: inputCount)
         var imagp = [Float](repeating: 0, count: inputCount)
         var output = DSPSplitComplex(realp: &realp, imagp: &imagp)
-        // No windowing uncomment to apply HANN windowing
 
         let transferBuffer = [Float](samples)
         let temp = UnsafePointer<Float>(transferBuffer)
@@ -84,9 +86,7 @@ class FFTComputer {
     }
     // MARK: - Helpers
     func destroySetup(){
-        if self.fftSetup != nil{
-            vDSP_destroy_fftsetup(self.fftSetup)
-        }
+        vDSP_destroy_fftsetup(self.fftSetup)
     }
     func sqrtq(_ x: [Float]) -> [Float] {
         var results = [Float](repeating: 0.0, count: x.count)

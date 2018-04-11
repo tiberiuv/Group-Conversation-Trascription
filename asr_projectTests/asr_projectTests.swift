@@ -73,7 +73,7 @@ class asr_projectTests: XCTestCase {
             ross_test = Process_helper.buffer2float(buffer: buffer6!)
             //vad_ross_test = test_vad(buffer6!);
         } catch {print(error)}
-//        8k_8PCM_eng 7127-75946-0002
+
     }
     
     override func tearDown() {
@@ -85,8 +85,8 @@ class asr_projectTests: XCTestCase {
         let buffer = AVAudioPCMBuffer(pcmFormat: file.format, frameCapacity: AVAudioFrameCount(file.file.length))
         do {
             try file.file.read(into: buffer!, frameCount: 512);
-            let fft = Fft_transformer();
-            let fft_buffer = try fft.transform(samples: Process_helper.buffer_to_float(buffer: buffer!));
+            let fft = FFTComputer(512);
+            let fft_buffer = try fft.transform(samples: Process_helper.buffer2float(buffer: buffer!));
             fft_buffer.elements.forEach({element in print(element)});
             for i in 0...fft_buffer.count - 1  {
                 print("Freq \(Double(i) * (buffer?.format.sampleRate)! / Double(fft_buffer.count))")
@@ -101,9 +101,9 @@ class asr_projectTests: XCTestCase {
         let buffer = AVAudioPCMBuffer(pcmFormat: file.format, frameCapacity: 512)
         do {
             try file.file.read(into: buffer!, frameCount: 512);
-            let buffer_to_float = Process_helper.buffer_to_float(buffer: buffer!)
-            let buffer2 = Process_helper.float_to_buffer(samples: buffer_to_float, audio_format: file.format)
-            let samples = Process_helper.buffer_to_float(buffer: buffer2)
+            let buffer_to_float = Process_helper.buffer2float(buffer: buffer!)
+            let buffer2 = Process_helper.float2buffer(samples: buffer_to_float, audio_format: file.format)
+            let samples = Process_helper.buffer2float(buffer: buffer2)
             
             for i in 0...buffer!.frameLength - 1  {
                 print("Buffer to float : \(buffer_to_float[Int(i)])")
@@ -114,7 +114,7 @@ class asr_projectTests: XCTestCase {
     }
     func test_vad(_ buffer: AVAudioPCMBuffer) -> [[Double]] {
         let detector = VAD(buffer: buffer);
-        let samples = Process_helper.buffer_to_float(buffer: buffer);
+        let samples = Process_helper.buffer2float(buffer: buffer);
         var mfccs = [[Double]]();
         var speech_samples = [Float]();
         detector.detect(speech: {(index: Int) -> Void in

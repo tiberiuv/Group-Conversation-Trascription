@@ -36,7 +36,7 @@ class MFCCComputer {
     // MARK: - Destroy fft setup after usage destroy
     // TODO: - check
     // FIXME: - Some bug
-    init(sa_freq: Double = 16000, n_cep: Int = 12,win_len: Int = 25, frame_sft: Int = 10, n_filt: Int = 40, low_f: Double = 0.0, high_f: Double = 16000/2, compDeltas:Bool = true) {
+    init(sa_freq: Double = 16000, n_cep: Int = 12,win_len: Int = 25, frame_sft: Int = 10, n_filt: Int = 26, low_f: Double = 0.0, high_f: Double = 16000/2, compDeltas:Bool = true) {
         saFreq = sa_freq
         numCepestra = n_cep
         winLength = win_len
@@ -54,7 +54,7 @@ class MFCCComputer {
         numWinFrames = winLength * Int(saFreq) / 1000
         numShiftFrames = frameShift * Int(saFreq) / 1000
         self.fftTransformer = FFTComputer(numWinFrames)
-        dctSetup = vDSP_DCT_CreateSetup(nil, vDSP_Length(64), vDSP_DCT_Type.II)!
+        dctSetup = vDSP_DCT_CreateSetup(nil, vDSP_Length(1 << UInt(round(log2(Double(numFilters))))), vDSP_DCT_Type.II)!
         
         init_filter_bank()
         init_dct()
@@ -71,7 +71,11 @@ class MFCCComputer {
         preemph_ham()
         comp_power_spectrum()
         apply_lmfb()
-        let mfcc = apply_dct()
+        var mfcc = [Double](apply_dct()[1..<numCepestra]) // leave out first coeficient as its jsut sum of log energys
+        let velocity = computeDeltaN(mfcc)
+        let accel = computeDeltaN(velocity)
+        mfcc.append(contentsOf: velocity)
+        mfcc.append(contentsOf: accel)
         
         return mfcc;
     }
@@ -109,7 +113,7 @@ class MFCCComputer {
     }
     func comp_power_spectrum() {
         do {
-            powerSpectrum = try fftTransformer.getPowerSpectrum(fftTransformer.transform(samples: frame))
+            powerSpectrum = try fftTransformer.getPowerSpectrum(fftTransformer.transform(input: frame))
         } catch {print(error)}
     }
     // Applying log Mel filterbank (LMFB)
@@ -131,15 +135,15 @@ class MFCCComputer {
     func apply_dct() -> [Double]{
         var mfcc = [Double](repeating: 0, count: numCepestra+1);
         var floatCoef = LMFBCoef.map{Float($0)}
-        while floatCoef.count < 64 {
+        while floatCoef.count < 1 << UInt(round(log2(Double(numFilters)))) {
             floatCoef.append(0.0)
         }
-        var pointerMfcc = UnsafeMutablePointer(mutating: Array<Float>())
+        let pointerMfcc = UnsafeMutablePointer(mutating: Array<Float>())
         vDSP_DCT_Execute(self.dctSetup!, &floatCoef, pointerMfcc)
-        var mfcc2 = Array(UnsafeBufferPointer(start: pointerMfcc, count: LMFBCoef.count))
+        let mfcc2 = Array(UnsafeBufferPointer(start: pointerMfcc, count: LMFBCoef.count))
         for i in 0...numCepestra {
             for j in 0..<numFilters {
-                 mfcc[i] = dct[i][j] * LMFBCoef[j]
+                 mfcc[i] += dct[i][j] * LMFBCoef[j]
             }
         }
         return mfcc
@@ -230,14 +234,10 @@ class MFCCComputer {
         }
         return deltas
     }
-//    func hamming(k: Int) -> Double {
-//        return 0.54 - 0.46 * cos(2 * M_PI * k / (win_length_samples-1) )
-//    }
+
 //Helpers
     func destroySetups() {
-        if(self.dctSetup != nil) {
-            vDSP_DFT_DestroySetup(self.dctSetup)
-        }
+        vDSP_DFT_DestroySetup(self.dctSetup)
         self.fftTransformer.destroySetup()
     }
     func hzToMel(_ hz: Double) -> Double {
