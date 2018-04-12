@@ -58,8 +58,8 @@ class MFCCComputer {
         self.fftTransformer = FFTComputer(numWinFrames)
         dctSetup = vDSP_DCT_CreateSetup(nil, vDSP_Length(1 << UInt(round(log2(Double(numFilters))))), vDSP_DCT_Type.II)!
         
-        init_filter_bank()
-        init_dct()
+        initMelFilterBanks()
+        initDCTMatrix()
     }
     
     func process_frame(samples: [Float]) -> [Double]{
@@ -70,12 +70,12 @@ class MFCCComputer {
         }
         prevSamples = [Float](frame[numShiftFrames..<frame.count])
         
-        preemph_ham()
-        comp_power_spectrum()
-        apply_lmfb()
-        var mfcc = [Double](apply_dct()[1..<numCepestra]) // leave out first coeficient as its just sum of log energys
+        preemphHamming()
+        getPowerSpectrum()
+        getLMFB()
+        var mfcc = [Double](applyDCT()[1..<numCepestra+1]) // leave out first coeficient as its just sum of log energys
         if lifterN > 1 {
-            mfcc = lifter(features: mfcc, lifterN)
+            cepLifter(features: &mfcc, lifterN)
         }
         let velocity = computeDeltaN(mfcc)
         let accel = computeDeltaN(velocity)
@@ -102,7 +102,7 @@ class MFCCComputer {
         return mfccs
     }
     // apply pre emphasis filter and hamming window to the frame
-    func preemph_ham(){
+    func preemphHamming(){
         var procFrame = [Float](repeating: 0, count: frame.count)
         
         for i in 1..<frame.count {
@@ -116,13 +116,13 @@ class MFCCComputer {
                   1, &frame, 1, UInt(numWinFrames))
 
     }
-    func comp_power_spectrum() {
+    func getPowerSpectrum() {
         do {
             powerSpectrum = try fftTransformer.getPowerSpectrum(fftTransformer.transform(input: frame))
         } catch {print(error)}
     }
     // Applying log Mel filterbank (LMFB)
-    func apply_lmfb() {
+    func getLMFB() {
         LMFBCoef = [Double](repeating: 0, count: numFilters)
         for i in 0..<numFilters{
         // Multiply the filterbank matrix
@@ -137,7 +137,7 @@ class MFCCComputer {
     }
     
     // apply direct consine tranform -> return mfcc array
-    func apply_dct() -> [Double]{
+    func applyDCT() -> [Double]{
         var mfcc = [Double](repeating: 0, count: numCepestra+1);
         var floatCoef = LMFBCoef.map{Float($0)}
         while floatCoef.count < 1 << UInt(round(log2(Double(numFilters)))) {
@@ -155,8 +155,8 @@ class MFCCComputer {
         return mfcc
     }
     
-    // Initiate hamming window values and direct cosine transform matrix
-    func init_dct() {
+    // Precompute direct cosine transform matrix
+    func initDCTMatrix() {
         
         var arr1 = [Double](repeating: 0, count: numCepestra+1)
         var arr2 = [Double](repeating: 0, count: numFilters)
@@ -177,7 +177,7 @@ class MFCCComputer {
         }
     }
     // Initiate mel filter bank
-    func init_filter_bank() {
+    func initMelFilterBanks() {
         let lowMel = hzToMel(lowFreq)
         let highMel = hzToMel(highFreq)
         let rangeMel = highMel - lowMel
@@ -241,13 +241,12 @@ class MFCCComputer {
         return deltas
     }
     // Sinusoidal lifeter
-    func lifter(features: [Double], _ N: Int) -> [Double] {
-        var liftedFeats = features
+    // other lifters |Linear|Satistical|Exponential|
+    func cepLifter(features: inout [Double], _ N: Int) {
         let D = Double(N)
         for i in 0..<features.count {
-            liftedFeats[i] *= 1.0 + D/2 * sin(Double.pi * Double(i) / D)
+            features[i] *= 1.0 + D/2 * sin(Double.pi * Double(i+1) / D)
         }
-        return liftedFeats
     }
 //Helpers
     func destroySetups() {
@@ -260,6 +259,11 @@ class MFCCComputer {
     func mel_to_hz(_ mel: Double) -> Double {
         return 700 * (pow(10,mel/2595) - 1)
     }
-    
+    func extendVector<T>(_ input: Array<T>, size: Int) {
+        var vector = input
+        while vector.count < size {
+            
+        }
+    }
 }
 
