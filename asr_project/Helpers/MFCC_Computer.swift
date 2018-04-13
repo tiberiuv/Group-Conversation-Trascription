@@ -97,6 +97,7 @@ class MFCCComputer {
         var procFrame = [Float](repeating: 0, count: frame.count)
         
         for i in 1..<frame.count {
+<<<<<<< HEAD
             procFrame[i] = (frame[i] - Float(preEmph) * frame[i-1])
         }
         let pointerFrame = UnsafePointer<Float>(procFrame)
@@ -176,6 +177,7 @@ class MFCCComputer {
             centreFreq[i] = (mel_to_hz(lowMel + rangeMel / Double(numFilters+1)*Double(i)))
         }
         
+<<<<<<< HEAD
         var binFreq = [Double](repeating: 0, count: numFFTBins)
         for i in 0..<numFFTBins {
             binFreq[i] = saFreq / 2.0 / Double(numFFTBins - 1) * Double(i)
@@ -183,6 +185,21 @@ class MFCCComputer {
 
 //         Populate the fbank matrix
         for filt in 1...numFilters {
+=======
+        var centre_freq = [Double](repeating: 0, count: num_filters + 2)
+        for i in 0..<num_filters + 2 {
+            centre_freq[i] = (mel_to_hz(mel: low_mel_freq + (high_mel_freq - low_mel_freq )/Double(num_filters+1)*Double(i)))
+//            var x = centre_freq[i]
+        }
+        var fftbin_freq = [Double](repeating: 0, count: num_fftbins)
+        for i in 0..<num_fftbins {
+            fftbin_freq[i] = (sampling_freq / 2.0 / Double(num_fftbins-1)*Double(i))
+//            var x = fftbin_freq[i]
+        }
+        filter_bank = [[Double]]();
+        // Populate the fbank matrix
+        for filt in 1...num_filters {
+>>>>>>> 47ef41a332b45300ae210a40d7218ad8060926ef
             var ftemp = [Double]()
             for bin in 0..<numFFTBins {
                 var weight = Double()

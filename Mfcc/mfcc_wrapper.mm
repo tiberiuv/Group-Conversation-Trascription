@@ -27,6 +27,7 @@
     MFCC mfccComputer (samplingRate, numCepstra, winLength, frameShift, numFilters, lowFreq, highFreq, appendDeltas);
     auto mfccs = mfccComputer.process_floats(samples, size);
     std::vector<double> flat_mfccs;
+<<<<<<< HEAD
     
     flat_mfccs.reserve(mfccs.size() * mfccs[0].size());
     flat_mfccs.push_back((mfccs.size() * numCepstra * 3));
