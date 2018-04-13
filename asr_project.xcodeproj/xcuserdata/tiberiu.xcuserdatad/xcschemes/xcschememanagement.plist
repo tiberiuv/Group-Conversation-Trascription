@@ -7,7 +7,11 @@
 		<key>asr_project.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
+<<<<<<< HEAD
 			<integer>7</integer>
+=======
+			<integer>1</integer>
+>>>>>>> 47ef41a332b45300ae210a40d7218ad8060926ef
 		</dict>
 	</dict>
 </dict>

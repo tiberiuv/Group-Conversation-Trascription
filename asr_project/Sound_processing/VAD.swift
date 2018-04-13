@@ -14,11 +14,19 @@ class VAD {
     private var no_frames = 0
     private var num_samples = 0
     // default threshold params
+<<<<<<< HEAD
     private let def_e: Double = 40
     private let def_f: Double = 185
     private let def_sfm: Double = 5
     var pcm_buffer: AVAudioPCMBuffer
     var samples: [Float]?
+=======
+    private let def_e: Double = 40;
+    private let def_f: Double = 185;
+    private let def_sfm: Double = 5;
+    var pcm_buffer: AVAudioPCMBuffer;
+    var samples: [Float]?;
+>>>>>>> 47ef41a332b45300ae210a40d7218ad8060926ef
     
     init(buffer: AVAudioPCMBuffer) {
         self.pcm_buffer = buffer
@@ -32,14 +40,24 @@ class VAD {
 //        self.no_frames = speech_samples.count / num_samples;
 //    }
     func reinit(buffer: AVAudioPCMBuffer) {
+<<<<<<< HEAD
         self.pcm_buffer = buffer
         self.num_samples = Int(buffer.format.sampleRate * (framesize / 1000.0))
         self.no_frames = Int(Double(buffer.frameLength) / Double(num_samples))
+=======
+        self.pcm_buffer = buffer;
+        self.num_samples = Int(buffer.format.sampleRate * (framesize / 1000.0));
+        self.no_frames = Int(Double(buffer.frameLength) / Double(num_samples));
+>>>>>>> 47ef41a332b45300ae210a40d7218ad8060926ef
     }
     // energy is root mean square(rms) of a frame
     // frequency is the most dominant frequency in the fft bins of a frame
     // sfm is the spectral flatness measure of the power spectrum of a frame
+<<<<<<< HEAD
     func detect(speech: (_ index: Int) -> Void){
+=======
+    func detect(speech: (_ speech_time: Double) -> Void){
+>>>>>>> 47ef41a332b45300ae210a40d7218ad8060926ef
         
         print("Duration \(Double(pcm_buffer.frameLength) / (pcm_buffer.format.sampleRate))")
         // thresholds based on float stream
@@ -60,9 +78,18 @@ class VAD {
             samples = Array(UnsafeBufferPointer(start: pcm_buffer.floatChannelData?[0].advanced(by: i*num_samples), count:num_samples)); // 1 frame worth of
             let energy = Process_helper.calculate_rms(audio_frame: samples); // energy of 1 frame
             do {
+<<<<<<< HEAD
                 let fft_buffer = try fft.transform(input: samples)
                 freq = try Double(fft.domin_freq(fft_buffer)) * ((pcm_buffer.format.sampleRate)/2) / Double(fft_buffer.count)
                 sfm = fft.getSpectralFlatness(fft_buffer)
+=======
+                let fft_buffer = try fft.transform(samples: samples);
+                freq = try Double(fft.domin_freq(fft_buffer: fft_buffer)) * ((pcm_buffer.format.sampleRate)/2) / Double(fft_buffer.count);
+                let power_spectrum = fft.get_power_spectrum(fft_buffer: fft_buffer)
+                let gm = Process_helper.geometric_mean(samples: power_spectrum)
+                let ar = Process_helper.ar_mean(samples: power_spectrum)
+                sfm = 10 * log10(gm / ar)
+>>>>>>> 47ef41a332b45300ae210a40d7218ad8060926ef
             } catch {print("error in calcualting fft: \(error)")}
             if (i < 30) {
                 if( energy < min_e ) { min_e = energy}
@@ -85,6 +112,7 @@ class VAD {
                     silence_c += 1
                     min_e = ((silence_c * min_e) + energy) / (silence_c + 1)
                 }
+<<<<<<< HEAD
                 thr_energy = def_e * log(min_e)
                 var indexSpeech = 0
                 var speech_time = 0.0
@@ -94,6 +122,17 @@ class VAD {
                     speech_time = ( Double(i*num_samples) / pcm_buffer.format.sampleRate)
                     print("SPEECH !!! at : \(speech_time)")
                     speech(indexSpeech)
+=======
+                thr_energy = def_e * log(min_e);
+                var speech_time = 0.0;
+                
+                // speech happening
+                if(speech_c >= 5 && flag == false) {
+                    speech_time = ( Double(i*num_samples) / pcm_buffer.format.sampleRate)
+                    print("SPEECH !!! at : \(speech_time)")
+                    speech(speech_time)
+                    flag = true;
+>>>>>>> 47ef41a332b45300ae210a40d7218ad8060926ef
                 }
                 
                 // no speech happening
@@ -101,6 +140,11 @@ class VAD {
                     print("NO SPEECH !!! at : \( Double(i*num_samples) / pcm_buffer.format.sampleRate)")
                     if(speech_time != 0.0) {
                         speech_time = ( Double(i*num_samples) / (pcm_buffer.format.sampleRate))
+<<<<<<< HEAD
+=======
+                        speech(speech_time)
+                        
+>>>>>>> 47ef41a332b45300ae210a40d7218ad8060926ef
                     }
                 }
             }
