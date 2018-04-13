@@ -17,7 +17,11 @@
 #import <OpenEars/OELogging.h>
 #import <OpenEars/OEAcousticModel.h>
 #import "mfcc_wrapper.h"
+<<<<<<< HEAD
 //#import "MLPackWrapper.h"
+=======
+#import "MLPackWrapper.h"
+>>>>>>> 47ef41a332b45300ae210a40d7218ad8060926ef
 
 
 #endif /* OpenEarsHeader_h */

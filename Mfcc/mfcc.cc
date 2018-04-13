@@ -285,9 +285,14 @@ public:
         uint32_t count = buffer_length;
         while (count + buffer_len < size) {
             
+<<<<<<< HEAD
             mfccs.push_back(processFrame(samples, buffer_len)); // string val
             if(appendDeltas) {
                 
+=======
+            mfccs.push_back(processFrame(samples, buffer_len)); // string vals
+            if(appendDeltas) {
+>>>>>>> 47ef41a332b45300ae210a40d7218ad8060926ef
                 v_d deltas = computeDeltas(v_d(mfcc.begin()+1, mfcc.end()),2); // compute and append deltas to mfcc
                 v_d delta_deltas = computeDeltas(deltas,2); // compute and append deltas
                 mfcc.insert(std::end(mfcc), std::begin(deltas), std::end(deltas));

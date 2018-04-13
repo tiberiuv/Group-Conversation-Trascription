@@ -70,8 +70,13 @@ class Process_helper {
 //            return false
 //        }
 //    }
+<<<<<<< HEAD
     static func buffer2float(buffer: AVAudioPCMBuffer) -> [Float] {
         return Array(UnsafeBufferPointer(start: buffer.floatChannelData?[0], count:Int(buffer.frameLength)))
+=======
+    static func buffer_to_float(buffer: AVAudioPCMBuffer) -> [Float] {
+        return Array(UnsafeBufferPointer(start: buffer.floatChannelData?[0], count:Int(buffer.frameLength)));
+>>>>>>> 47ef41a332b45300ae210a40d7218ad8060926ef
     }
     static func float2buffer(samples :[Float], audio_format: AVAudioFormat) -> AVAudioPCMBuffer{
         let buffer = AVAudioPCMBuffer(pcmFormat: audio_format, frameCapacity: AVAudioFrameCount(samples.count))
@@ -101,6 +106,7 @@ class Process_helper {
         return turn
     }
     static func geometric_mean(samples: [Float]) -> Double {
+<<<<<<< HEAD
         var total = 1.0;
         //let total = samples.reduce(1.0) {x,y in Double(x) * Double(y)}
         for i in 0..<samples.count {
@@ -110,6 +116,14 @@ class Process_helper {
     }
     static func ar_mean(samples: [Float]) -> Double {
         let total: Double = samples.reduce(0.0) { x,y in Double(x) + Double(y)}
+=======
+        let total = samples.reduce(1.0) {x,y in Double(x) * Double(y)};
+        
+        return abs(pow(total, 1.0/Double(samples.count)));
+    }
+    static func ar_mean(samples: [Float]) -> Double {
+        let total: Double = samples.reduce(0.0) { x,y in Double(x) + Double(y)};
+>>>>>>> 47ef41a332b45300ae210a40d7218ad8060926ef
         
         return total / Double(samples.count);
     }
