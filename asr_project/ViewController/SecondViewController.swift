@@ -32,15 +32,10 @@ class SecondViewController: UIViewController {
     }
 
     @IBAction func stop_recording(_ sender: Any) {
-<<<<<<< HEAD
         self.audio_engine.stop()
         self.recognitionTask?.cancel()
         self.request.endAudio()
-=======
-        self.audio_engine.stop();
-        self.recognitionTask?.cancel();
-        self.request.endAudio();
->>>>>>> 47ef41a332b45300ae210a40d7218ad8060926ef
+
     }
     func recognize() {
 
@@ -78,7 +73,6 @@ class SecondViewController: UIViewController {
     fileprivate func updateUIFullTranscript(_ transcription: String) {
         DispatchQueue.main.async {
             [unowned self] in
-<<<<<<< HEAD
             self.transcript_label.text = transcription
             UIView.animate(withDuration: 0.5, animations: {
                 self.activityIndicator.isHidden = true
@@ -87,16 +81,6 @@ class SecondViewController: UIViewController {
             }, completion: { _ in
                 self.activityIndicator.stopAnimating()
                 //self.transcripeButton.isEnabled = true
-=======
-            self.transcript_label.text = transcription;
-            UIView.animate(withDuration: 0.5, animations: {
-                self.activityIndicator.isHidden = true;
-                self.transcript_label.isHidden = false;
-                
-            }, completion: { _ in
-                self.activityIndicator.stopAnimating();
-                //self.transcripeButton.isEnabled = true;
->>>>>>> 47ef41a332b45300ae210a40d7218ad8060926ef
             })
         }
     }
