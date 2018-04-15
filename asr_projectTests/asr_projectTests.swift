@@ -27,17 +27,21 @@ class asr_projectTests: XCTestCase {
     var ross_train: [Float]!
     var ross_test: [Float]!
     
-    var vad_ross: [[Double]]!;
-    var vad_chad: [[Double]]!;
-    var vad_ross_test: [[Double]]!;
+    var vad_ross: [[Double]]!
+    var vad_chad: [[Double]]!
+    var vad_rachel: [[Double]]!
+    var vad_joey: [[Double]]!
+    var vad_phoebe: [[Double]]!
+    var vad_monica: [[Double]]!
+    var vad_ross_test: [[Double]]!
     
-    var mean: Double = 0;
-    var std_dev: Double = 0;
+    var mean: Double = 0
+    var std_dev: Double = 0
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
 //        file = Audio_file(url :Bundle.main.url(forResource: "7127-75946-0002", withExtension: "flac")!)
-        print(file_chad_train.format.description);
+        print(file_chad_train.format.description)
         
         let buffer = AVAudioPCMBuffer(pcmFormat: file_chad_train.format, frameCapacity: UInt32(file_chad_train.file.length))
         let buffer1 = AVAudioPCMBuffer(pcmFormat: file_joey_train.format, frameCapacity: UInt32(file_joey_train.file.length))
@@ -46,26 +50,29 @@ class asr_projectTests: XCTestCase {
         let buffer4 = AVAudioPCMBuffer(pcmFormat: file_rachel_train.format, frameCapacity: UInt32(file_rachel_train.file.length))
         let buffer5 = AVAudioPCMBuffer(pcmFormat: file_ross_train.format, frameCapacity: UInt32(file_ross_train.file.length))
         let buffer6 = AVAudioPCMBuffer(pcmFormat: file_ross_test.format, frameCapacity: UInt32(file_ross_test.file.length))
- 
+        
         do {
             try file_joey_train.file.read(into: buffer1!)
             joey_train = Process_helper.buffer2float(buffer: buffer1!)
+            vad_joey = test_vad(buffer1!)
             try file_monica_train.file.read(into: buffer2!)
             monica_train = Process_helper.buffer2float(buffer: buffer2!)
+            vad_monica = test_vad(buffer2!);
             try file_phoebe_train.file.read(into: buffer3!)
             phoebe_train = Process_helper.buffer2float(buffer: buffer3!)
+            vad_phoebe = test_vad(buffer3!);
             try file_rachel_train.file.read(into: buffer4!)
             rachel_train = Process_helper.buffer2float(buffer: buffer4!)
-            
+            vad_rachel = test_vad(buffer4!)
             try file_chad_train.file.read(into: buffer!)
             chad_train = Process_helper.buffer2float(buffer: buffer!)
-            //vad_chad = test_vad(buffer!);
+            vad_chad = test_vad(buffer!);
             try file_ross_train.file.read(into: buffer5!)
             ross_train = Process_helper.buffer2float(buffer: buffer5!)
-            //vad_ross = test_vad(buffer5!);
+            vad_ross = test_vad(buffer5!);
             try file_ross_test.file.read(into: buffer6!)
             ross_test = Process_helper.buffer2float(buffer: buffer6!)
-            //vad_ross_test = test_vad(buffer6!);
+            vad_ross_test = test_vad(buffer6!);
 
         } catch {print(error)}
 
@@ -116,12 +123,44 @@ class asr_projectTests: XCTestCase {
         detector.detect(speech: {(index: Int) -> Void in
             speech_samples.append(contentsOf: samples[index..<index+160]);
             if(speech_samples.count >= 1200) {
-                mfccs.append(contentsOf: extract_mfccs(speech_samples))
+                mfccs.append(contentsOf: extractMyMFCC(speech_samples))
                 speech_samples.removeAll()
             }
         })
         return mfccs
 
+    }
+    func testInferenceEngine() {
+        let chad = vad_chad!
+        let rachel = vad_rachel!
+        var ross = vad_ross!
+        let rossTest = vad_ross_test!
+        ross.append(contentsOf: rossTest)
+        let monica = vad_monica!
+        let phoebe = vad_phoebe!
+        let joey = vad_joey!
+        
+        let infEngine = InferenceEngine(speakerFeatMatrix: chad, outputCount: 1)
+        _ = infEngine.addSpeakerTrainingData(featureMatrix: rachel)
+        _ = infEngine.addSpeakerTrainingData(featureMatrix: ross)
+        _ = infEngine.addSpeakerTrainingData(featureMatrix: monica)
+        _ = infEngine.addSpeakerTrainingData(featureMatrix: phoebe)
+        _ = infEngine.addSpeakerTrainingData(featureMatrix: joey)
+        
+        infEngine.buildClassifiers()
+        var accuracy = 0.0
+        
+        let testSet = rachel
+        for testVector in testSet {
+            let speaker = infEngine.classify(testVector)
+            print("speaker id = \(speaker)")
+            if speaker == 1 {
+                accuracy += 1
+            }
+        }
+        print("Accuracy : \(accuracy * 100.0 / Double(testSet.count))% ")
+        
+        
     }
     func extract_mfccs(_ samples: [Float]) -> [[Double]]{
         let pointer = UnsafeMutablePointer<Float>(mutating: samples)
@@ -167,7 +206,10 @@ class asr_projectTests: XCTestCase {
             let features = mfccComputer.process(samples: testSamples)
         }
     }
-
+    func extractMyMFCC(_ samples: [Float]) -> [[Double]] {
+        let mfccComputer = MFCCComputer()
+        return mfccComputer.process(samples: samples)
+    }
 //    func apply_vad(buffer: AVAudioPCMBuffer) {
 //        let vad = VAD(buffer: buffer);
 //    

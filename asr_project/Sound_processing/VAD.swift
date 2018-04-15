@@ -61,7 +61,7 @@ class VAD {
         var flag = false
         for i in 0...no_frames {
             samples = Array(UnsafeBufferPointer(start: pcm_buffer.floatChannelData?[0].advanced(by: i*num_samples), count:num_samples)); // 1 frame worth of
-            let energy = Process_helper.calculate_rms(audio_frame: samples); // energy of 1 frame
+            let energy = Process_helper.calculateEnergy(samples); // energy of 1 frame
             do {
                 let fft_buffer = try fft.transform(input: samples)
                 freq = try Double(fft.domin_freq(fft_buffer)) * ((pcm_buffer.format.sampleRate)/2) / Double(fft_buffer.count)
@@ -74,7 +74,7 @@ class VAD {
                 if (sfm < min_sfm) {min_sfm = sfm}
             }
             else {
-                thr_energy = def_e * log(min_e)
+                thr_energy = def_e * log10(min_e)
                 thr_freq = def_f
                 thr_sfm = def_sfm;
                 
@@ -90,7 +90,7 @@ class VAD {
                     min_e = ((silence_c * min_e) + energy) / (silence_c + 1)
                 }
 
-                thr_energy = def_e * log(min_e)
+                thr_energy = def_e * log10(min_e)
                 var indexSpeech = 0
                 var speech_time = 0.0
                 // speech happening

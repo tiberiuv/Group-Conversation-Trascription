@@ -17,7 +17,7 @@ class Process_helper {
      crossing rates in a frame
      * Higher value of ZCR for silence or background noise
      */
-    static func calculate_zcr(audio_frame:[Float]) -> Float{
+    static func calculate_zcr(_ audio_frame:[Float]) -> Float{
         var sum: Float = 0
         for i in 2...audio_frame.count-1{
             sum += abs(sign(audio_frame[i]) - sign(audio_frame[i-1]) )
@@ -29,7 +29,7 @@ class Process_helper {
      Equation: sum of squares of each sample in a frame
      * Higher RMS for voiced frame
      */
-    static func calculate_rms(audio_frame:[Float]) -> Double{
+    static func calculate_rms(_ audio_frame:[Float]) -> Double{
         var sum: Double = 0.0
         for sample in audio_frame{
             sum += Double(sample * sample)
@@ -37,18 +37,24 @@ class Process_helper {
         
         return sqrt(sum / Double(audio_frame.count))
     }
-    
+    static func calculateEnergy(_ audioFrame: [Float]) -> Double {
+        var sum: Double = 0
+        for sample in audioFrame {
+            sum += pow(Double(sample), 2)
+        }
+        return sum
+    }
     /*  Calculate Low energy frame rate of a segment
      as number of frames which have an rms value less than
      half of the average of the segment
      * Higher LEFR for voiced segment
      */
-    static func low_energy_framte_rate(segment:[[Float]]) -> Int{
+    static func low_energy_framte_rate(_ segment:[[Float]]) -> Int{
         var frame_rms:[Double] = []
         var total_rms = 0.0
         for frame in segment{
-            frame_rms.append(calculate_rms(audio_frame: frame))
-            total_rms += calculate_rms(audio_frame: frame)
+            frame_rms.append(calculate_rms(frame))
+            total_rms += calculate_rms(frame)
         }
         let avg_rms = total_rms / Double(frame_rms.count)
         var count_rms = 0

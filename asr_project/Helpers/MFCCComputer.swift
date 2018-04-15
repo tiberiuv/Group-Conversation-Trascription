@@ -95,7 +95,6 @@ class MFCCComputer {
             if(i + buffer_len <= samples.count){
                 let frame_samples = [Float] (samples[i..<i+buffer_len])
                 let mfcc = process_frame(samples: frame_samples)
-                print(mfcc)
                 mfccs.append(mfcc)
             }
         }

@@ -14,8 +14,8 @@ class Audio_frame {
     var rms:Double
     init(samples:[Float]) {
         self.sample_list = samples;
-        self.zcr = Process_helper.calculate_zcr(audio_frame: sample_list)
-        self.rms = Process_helper.calculate_rms(audio_frame: sample_list)
+        self.zcr = Process_helper.calculate_zcr(sample_list)
+        self.rms = Process_helper.calculate_rms(sample_list)
     }
     func get_samples()-> [Float]{
         return sample_list
