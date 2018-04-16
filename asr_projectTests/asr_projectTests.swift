@@ -135,26 +135,28 @@ class asr_projectTests: XCTestCase {
         let rachel = vad_rachel!
         var ross = vad_ross!
         let rossTest = vad_ross_test!
-        ross.append(contentsOf: rossTest)
+//        ross.append(contentsOf: rossTest)
         let monica = vad_monica!
         let phoebe = vad_phoebe!
         let joey = vad_joey!
+        let joey_test = [[Double]](joey[joey.count/2..<joey.count])
         
         let infEngine = InferenceEngine(speakerFeatMatrix: chad, outputCount: 1)
         _ = infEngine.addSpeakerTrainingData(featureMatrix: rachel)
         _ = infEngine.addSpeakerTrainingData(featureMatrix: ross)
         _ = infEngine.addSpeakerTrainingData(featureMatrix: monica)
         _ = infEngine.addSpeakerTrainingData(featureMatrix: phoebe)
+//        _ = infEngine.addSpeakerTrainingData(featureMatrix: [[Double]](joey[0...joey.count / 2]))
         _ = infEngine.addSpeakerTrainingData(featureMatrix: joey)
         
         infEngine.buildClassifiers()
         var accuracy = 0.0
         
-        let testSet = rachel
+        let testSet = rossTest
         for testVector in testSet {
             let speaker = infEngine.classify(testVector)
             print("speaker id = \(speaker)")
-            if speaker == 1 {
+            if speaker == 2 {
                 accuracy += 1
             }
         }
